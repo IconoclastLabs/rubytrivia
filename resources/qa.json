@@ -1,0 +1,834 @@
+{
+  "Language Characteristics and Core Objects": [
+    {
+      "question": "What is the highest level in the object model?  ",
+      "answer": "`BasicObject`"
+    },
+    {
+      "question": "Is everything in Ruby an object?  ",
+      "answer": "Methods are not objects. Blocks are not objects. Keywords are not objects. However, there exist Method objects and Proc objects, and some keywords refer to objects."
+    },
+    {
+      "question": "Which core object includes the `Kernel` module?  ",
+      "answer": "`Object`"
+    },
+    {
+      "question": "What can you say about an identifier that begins with a capital letter?  ",
+      "answer": "It is a constant."
+    },
+    {
+      "question": "What is a DSL and how does it pertain to Ruby?  ",
+      "answer": "A Domain Specific Language is an API that allows a developer to solve a problem or represent data more naturally than they might otherwise. The flexible nature of Ruby's syntax and the ability to alias and alter existing methods and classes makes it conducive to creating rich DSL's."
+    },
+    {
+      "question": "What is duck typing and how does it pertain to Ruby?  ",
+      "answer": "That an object may be acted upon even if it isn't the expected type as long as it looks and behaves like the expected object. This is a characteristic of Ruby because the lack of type checking of parameters makes this an effective programming technique."
+    },
+    {
+      "question": "Is Ruby a statically typed or a dynamically typed language?  ",
+      "answer": "Dynamically typed since type checking is done at runtime."
+    },
+    {
+      "question": "Is Ruby a strongly typed or a weakly typed language?  ",
+      "answer": "Strongly typed since an object's type is checked before an operation is performed on it."
+    },
+    {
+      "question": "What does it mean to coerce an object? Why would you do it?  ",
+      "answer": "To coerce an object means to force it into an expected type. One might do this in order to try and force an unknown object type into the expected type or format required by the operation. This is a common practice involved in duck typing."
+    },
+    {
+      "question": "What is the difference between a statement and an expression in Ruby?  ",
+      "answer": "All statements are expressions in Ruby since all statements return a value."
+    }
+  ],
+  "Data Types": [
+    {
+      "question": "Why might you want to avoid using string literals within loops?  ",
+      "answer": "A new object is created for every string literal even when the values are identical. Consider using variables or symbols instead."
+    },
+    {
+      "question": "Does `String` include the `Enumerable` module?  ",
+      "answer": "No."
+    },
+    {
+      "question": "What method might you use to enumerate over a string?  ",
+      "answer": "`#each_char`"
+    },
+    {
+      "question": "What is the difference between a character literal such as `?A` and a string literal such as `'A'`?  ",
+      "answer": "There is no difference."
+    },
+    {
+      "question": "Describe a symbol.  ",
+      "answer": "Symbols are scalar value objects used as identifiers, mapping immutable strings to fixed internal values."
+    },
+    {
+      "question": "Why are symbols typically used as hash keys instead of strings?  ",
+      "answer": "Strings are mutable while symbols are immutable. Though Ruby internally makes an immutable copy of a string when used as a hash key, comparing two symbols is faster than comparing two `String` objects. This is also a convention."
+    },
+    {
+      "question": "Symbols are immutable objects. Name another immutable core Ruby object.  ",
+      "answer": "`Fixnum`"
+    },
+    {
+      "question": "What happens when a value becomes too big for `Fixnum`?  ",
+      "answer": "It is automatically converted to a `Bignum`."
+    },
+    {
+      "question": "What is the superclass of `Fixnum`?  ",
+      "answer": "`Integer`"
+    },
+    {
+      "question": "What is the superclass of `Integer`?  ",
+      "answer": "`Numeric`"
+    },
+    {
+      "question": "What numeric class might you use to avoid the rounding error arising in the use of binary floating-point arithmetic?  ",
+      "answer": "`BigDecimal`"
+    },
+    {
+      "question": "How does the `%W` syntax differ from the `%w` syntax?  ",
+      "answer": "With `%W` it is possible to define an array containing string interpolation."
+    },
+    {
+      "question": "Name at least one synonym for `#key?`?  ",
+      "answer": "`#has_key?`, `#include?`, `#member?`"
+    },
+    {
+      "question": "How might you specify a default value for a hash?  ",
+      "answer": "Pass the default values as an argument to `#new` on initialization or change the default directly with the setter method `Hash#default`. You may also provide a default at time of query using `#fetch`."
+    },
+    {
+      "question": "Does `Hash` use `#==` or `#eql?` to compare hash keys?  ",
+      "answer": "`#eql?`"
+    },
+    {
+      "question": "In what order are the values of a hash iterated?  ",
+      "answer": "The order in which they were inserted."
+    },
+    {
+      "question": "What is the synonym of `Hash#[]=`?  ",
+      "answer": "`Hash#store`"
+    },
+    {
+      "question": "Why can you safely use a string as a hash key, even though a string is mutable?  ",
+      "answer": "Because the interpreter makes a private copy of a string used as a hash key."
+    },
+    {
+      "question": "Why might you use `Hash#fetch` over `Hash#[]` when querying values in a hash?  ",
+      "answer": "`Hash#fetch` provides options for handling the case where a key does not exist in the hash."
+    },
+    {
+      "question": "When would you need to use `Hash#rehash`?  ",
+      "answer": "After you mutate a mutable hash key."
+    },
+    {
+      "question": "What are two uses of ranges?  ",
+      "answer": "comparison, iteration"
+    },
+    {
+      "question": "How might you include an expression within a `Regexp` literal?  ",
+      "answer": "Using `#{}` just like as in a double-quoted string literal."
+    },
+    {
+      "question": "What is the global variable for the last `Regexp` match?  ",
+      "answer": "`$LAST_MATCH_INFO` equivalent to `$~`"
+    }
+  ],
+  "Operators": [
+    {
+      "question": "What are two uses of the splat operator?  ",
+      "answer": "Explode or expand the elements of an array. Collect arguments of a parameter list into an array."
+    },
+    {
+      "question": "What is the only operator which accepts three operands?  ",
+      "answer": "The conditional operator `?:` (sometimes referred to as the ternary if operator)."
+    },
+    {
+      "question": "Which operator must be defined in order to implement the `Comparable` module?  ",
+      "answer": "`<=>`"
+    },
+    {
+      "question": "What is the difference between `#==` and `#equal?`?  ",
+      "answer": "`#==` performs the generic comparison and is implemented differently across classes while `#equal?` is defined on `BasicObject` and compares object identity. Therefore, `#equal?` should not be overridden in subclasses."
+    },
+    {
+      "question": "What is the difference between `#==` and `#===`?  ",
+      "answer": "`#==` performs the generic comparison while `#===` performs case equality comparison and is useful for providing meaningful semantics in case statements."
+    },
+    {
+      "question": "What is the difference between `#==` and `#eql?`?  ",
+      "answer": "`#eql?` is sometimes an alternate equality. `Hash` uses `#eql?` to test for hash key equality. `Numeric` types perform type conversion across `#==` but not across `#eql?`, thus `#eql?` performs a stricter comparison than `#==` in that case."
+    },
+    {
+      "question": "Which binds more tightly? `&&` or `and`  ",
+      "answer": "`&&`"
+    },
+    {
+      "question": "Which binds more tightly? `&&` or `=`  ",
+      "answer": "`&&`"
+    },
+    {
+      "question": "Which binds more tightly? `and` or `=`  ",
+      "answer": "`=`"
+    },
+    {
+      "question": "Which binds more tightly? `&&` or `||`  ",
+      "answer": "`&&`"
+    }
+  ],
+  "Control Structures": [
+    {
+      "question": "What is a statement modifier?  ",
+      "answer": "A condition which follows a statement such as with `x = 1 if a == true`"
+    },
+    {
+      "question": "Does a while block define a new scope?  ",
+      "answer": "No."
+    },
+    {
+      "question": "Does the case statement in Ruby have fall-through behavior?  ",
+      "answer": "No."
+    },
+    {
+      "question": "What is the difference between `throw/catch` and `raise/rescue`?  ",
+      "answer": "`throw` and `catch` accept matching symbols as arguments and should be considered a control-flow structure where `raise` and `rescue` is used to raise and handle exceptions. `throw` and `catch` are not commonly used while exception handling with `raise` and `rescue` is used often."
+    },
+    {
+      "question": "Does a `rescue` block define a new scope?  ",
+      "answer": "No."
+    },
+    {
+      "question": "What are some advantages of a case statement versus repeated `elsif` statements?  ",
+      "answer": "It shows intent. It DRY's out the condition."
+    },
+    {
+      "question": "What are some disadvantages of a case statement versus repeated `elsif` statements?  ",
+      "answer": "The statement is typically resistant to modification without a complete refactoring of the entire control structure. The case statement can be confusing if multiple comma-separated expressions are associated with a single when clause."
+    }
+  ],
+  "Blocks and Iterators": [
+    {
+      "question": "Name at least two classes which include the `Enumerable` module.  ",
+      "answer": "`Array`, `Hash`, `Set`, `Range`, `IO`..."
+    },
+    {
+      "question": "When might you use the `do`/`end` syntax versus using the curly bracket syntax for a block?  ",
+      "answer": "The `do`/`end` syntax for a block is commonly used for multi-line statements. An alternate convention is to use curly bracket syntax for blocks that return a value while using `do`/`end` syntax for blocks that change the state of the system somehow and do not return a value."
+    },
+    {
+      "question": "What is an iterator?  ",
+      "answer": "An object that allows traversal of the elements of the container. In Ruby, an iterator is typically considered any method that uses the yield statement."
+    },
+    {
+      "question": "How do you define block-local variables within a block's parameter list?  ",
+      "answer": "Variables that appear after a semicolon in a block's parameter list are guaranteed to be local to the block."
+    },
+    {
+      "question": "What is the synonym of `#include?`?  ",
+      "answer": "`#member?`"
+    },
+    {
+      "question": "Can a collection be modified while it is being iterated upon?  ",
+      "answer": "Yes."
+    },
+    {
+      "question": "Is a block an object?  ",
+      "answer": "No. A block is a syntactic structure of the interpreter. A block can be converted to a Proc object."
+    },
+    {
+      "question": "What is the synonym of `#collect`?  ",
+      "answer": "`#map`"
+    },
+    {
+      "question": "What is the synonym of `#find`?  ",
+      "answer": "`#detect`"
+    },
+    {
+      "question": "What is the synonym of `#select`?  ",
+      "answer": "`#find_all`"
+    },
+    {
+      "question": "What is the opposite of `#select`?  ",
+      "answer": "`#reject`"
+    },
+    {
+      "question": "What is the synonym of `#inject`?  ",
+      "answer": "`#reduce`"
+    },
+    {
+      "question": "Why might you use `#each` instead of `for/in`?  ",
+      "answer": "It's the 'Ruby way' - an example of how Ruby defines methods that mimic natural language concepts. Iterator methods such as `#each` read more naturally. `#each` is a block so it defines a new variable scope. `for/in` depends on the existence of `#each` which implies that `#each` is a more fundamental aspect of the language."
+    },
+    {
+      "question": "What happens if a block is passed two arguments but only accepts one argument?  ",
+      "answer": "Nothing. Only the first argument will be passed to the block."
+    },
+    {
+      "question": "How is a block anonymous?  ",
+      "answer": "It doesn't have a name. It doesn't exist beyond it's execution unless converted to a Proc object."
+    },
+    {
+      "question": "How does block invocation differ from method invocation?  ",
+      "answer": "Ruby will throw an exception if more than the expected number of arguments are passed to a method. A block will simply ignore the extra values."
+    }
+  ],
+  "Methods": [
+    {
+      "question": "Does Ruby support method overloading?  ",
+      "answer": "No."
+    },
+    {
+      "question": "How might you test the presence of a method?  ",
+      "answer": "`#respond_to?` or `#method?`"
+    },
+    {
+      "question": "What is the meaning of `self`?  ",
+      "answer": "The current object."
+    },
+    {
+      "question": "What does a bang `!` at the end of a method signify?  ",
+      "answer": "That it should be used cautiously. Methods with this naming convention typically perform a mutation on the receiver object."
+    },
+    {
+      "question": "What is a mutator method?  ",
+      "answer": "A method which alters the internal state of the object receiver."
+    },
+    {
+      "question": "Is a method an object?  ",
+      "answer": "No, however, a `Method` object is, of course, an object."
+    },
+    {
+      "question": "What is a predicate in the context of Ruby method naming conventions?  ",
+      "answer": "A method that answers a question posed by the method invocation or method name. Predicates typically return a boolean."
+    },
+    {
+      "question": "Are instance methods public or private?  ",
+      "answer": "They are public by default. You can change their visibility using `Module#private`, `Module#protected`, or back again using `Module#public`."
+    },
+    {
+      "question": "When might you explicitly use the `return` statement.  ",
+      "answer": "To return from a method prematurely."
+    },
+    {
+      "question": "Why might you want to alias a method?  ",
+      "answer": "To create a synonym for an existing method that is more readable or appropriate in the context of some problems or to add functionality to an existing method."
+    },
+    {
+      "question": "How might you send a message to a private method of a receiver object from outside the scope of the receiver object?  ",
+      "answer": "`#send`"
+    },
+    {
+      "question": "How would you typically prevent future modifications to an object?  ",
+      "answer": "`#freeze`"
+    },
+    {
+      "question": "How is the invocation of a private method different than the invocation of a public method from within its defining class?  ",
+      "answer": "It must be referenced in a functional manner without an explicit receiver object and not on the class object itself or on the current object `self`."
+    },
+    {
+      "question": "Can method names be capitalized?  ",
+      "answer": "Yes, but the convention is that they are not."
+    },
+    {
+      "question": "What is the difference between private and protected methods?  ",
+      "answer": "A private method can only be called by any instance methods of the defining class or any subclasses and must be invoked in a functional style and not explicitly on `self` such as with `self.my_method`. A protected method may be explicitly invoked by any instance of the defining class, and is not restricted to implicit invocation on `self`."
+    },
+    {
+      "question": "What is a singleton method?  ",
+      "answer": "A method that is available only on a single object."
+    },
+    {
+      "question": "How does `return` differ from within a method than from within a block?  ",
+      "answer": "`return` within a method returns from the method. `return` within a block returns from its lexically enclosing method."
+    },
+    {
+      "question": "Are class methods public or private?  ",
+      "answer": "They are public by default. You can change their visibility using `#private_class_method` and back again using `#public_class_method`."
+    },
+    {
+      "question": "Does a method return a value if it does not contain an expression?  ",
+      "answer": "Yes, it returns `nil`."
+    },
+    {
+      "question": "If a method is declared outside a class or module definition at the top level, where does it live?  ",
+      "answer": "As a private instance method of `Object`, whose value of `self` resolves to the special 'main' object."
+    },
+    {
+      "question": "What is the origin of the 'keywords' `public`, `private`, and `protected`?  ",
+      "answer": "They are instance methods of the `Module` class. Since `Class` subclasses `Module`, these methods can be invoked without explicit reference to `self` such as `self.private`."
+    },
+    {
+      "question": "How do you define a private class method?  ",
+      "answer": "Define the class method and call `#private_class_method` with an argument as a symbol of the class method name."
+    },
+    {
+      "question": "Name at least two ways to disable methods.  ",
+      "answer": "`undef method_name`, `#remove_method`, `#undef_method`"
+    },
+    {
+      "question": "What is the difference between `#remove_method` and `#undef_method`?  ",
+      "answer": "`#undef_method` prevents any invocation of the method through an instance of the class, while `#remove_method` will remove the method definition from the class, but not prevent inherited methods of the same name from being invoked."
+    },
+    {
+      "question": "Explain how Ruby syntax supports keyword arguments in parameters lists?  ",
+      "answer": "You can leave off the curly brackets from a hash in a parameter list, assuming it is the last argument in the list."
+    }
+  ],
+  "Procs and Lambdas": [
+    {
+      "question": "What are the two varieties of Proc objects?  ",
+      "answer": "Procs and lambdas."
+    },
+    {
+      "question": "What can be said about a method argument that is prefixed with `&`?  ",
+      "answer": "It will refer to the calling block as a named Proc object. It must be the last argument in the parameter list."
+    },
+    {
+      "question": "What is the main difference between procs and lambdas?  ",
+      "answer": "Calling a lambda is more akin to invoking a method where a return statement in a lambda will return from the lambda itself, instead of returning from the lexically enclosing method, as procs do. Adding to this notion, lambdas must be invoked with the exact number of arguments such as is required by method invocation, whereas procs are more flexible in receiving arguments."
+    },
+    {
+      "question": "Does an object have to be a Proc object for a `&` to be prefixed to it in a parameter list?  ",
+      "answer": "No, `&` can appear before any object with a `#to_proc` method."
+    },
+    {
+      "question": "What is the difference between Proc invocation and lambda invocation?  ",
+      "answer": "A block must be associated with lambda invocation. Lambdas must be invoked with the exact number of arguments such as is required by method invocation, whereas procs are more flexible in receiving arguments."
+    },
+    {
+      "question": "When might you encounter a `LocalJumpError`?  ",
+      "answer": "You might typically encounter this exception when attempting to yield when no block is given. You might also encounter this exception when attempting to return from a method that has already returned such as if you attempt to return from a Proc object whose lexically enclosing method has already returned."
+    }
+  ],
+  "Closures": [
+    {
+      "question": "Describe a closure in Ruby.  ",
+      "answer": "A closure is an object that is both an invocable function together with a variable binding. The object retains access to the local variables that were in scope at the time of the object definition."
+    },
+    {
+      "question": "Does a closure in Ruby retain variables by value or by reference?  ",
+      "answer": "By reference; the closure also extends the lifetimes of its variables."
+    },
+    {
+      "question": "A closure's reference to its variables is said to by dynamically bound. What does this mean?  ",
+      "answer": "The values of the variables are resolved when the Proc object is executed."
+    },
+    {
+      "question": "Is it possible to alter a closure?  ",
+      "answer": "Yes, the binding of a closure can be altered using `#binding`."
+    }
+  ],
+  "Method Objects": [
+    {
+      "question": "What must you first do before invoking an `UnboundMethod` object?  ",
+      "answer": "Bind it to a receiver object using `#bind`."
+    },
+    {
+      "question": "Are method objects closures?  ",
+      "answer": "No."
+    },
+    {
+      "question": "How do you obtain a `Method` object from an existing module/class?  ",
+      "answer": "Using `Object#method`"
+    },
+    {
+      "question": "How do you obtain an `UnboundMethod` object from an existing module/class?  ",
+      "answer": "Using `Module#instance_method`"
+    }
+  ],
+  "Constants": [
+    {
+      "question": "Are constants public or private?  ",
+      "answer": "Public."
+    },
+    {
+      "question": "What happens if you attempt to define a constant on a class from outside the class?  ",
+      "answer": "It defines successfully since constants are publicly accessible and assignable."
+    },
+    {
+      "question": "What happens to a constant which is not assigned?  ",
+      "answer": "It will not exist."
+    }
+  ],
+  "Classes": [
+    {
+      "question": "What is the difference between an instance variable and a class variable?  ",
+      "answer": "A class variable is evaluated in reference to the class object created by the enclosing class definition while an instance variable is evaluated in reference to `self`. Instance variables cannot be referenced outside of instance methods."
+    },
+    {
+      "question": "Why must a class name begin with a capital letter?  ",
+      "answer": "Because the class keyword creates a new constant that refers to the class and constants begin with a capital letter."
+    },
+    {
+      "question": "Is `#initialize` an instance method or a class method?  ",
+      "answer": "An instance method."
+    },
+    {
+      "question": "What is the difference between a class variable and a class instance variable?  ",
+      "answer": "Class instance variables are instance variables of a class. Class instance variables cannot be used within instance methods."
+    },
+    {
+      "question": "What is a singleton?  ",
+      "answer": "A class having only a single instance."
+    },
+    {
+      "question": "How might you create a singleton?  ",
+      "answer": "By including the `Singleton` module."
+    },
+    {
+      "question": "Can you define accessor methods for class instance variables?  ",
+      "answer": "Yes, if they are defined as singleton methods of the class."
+    },
+    {
+      "question": "Can classes be nested?  ",
+      "answer": "Yes."
+    },
+    {
+      "question": "Is `#initialize` public or private?  ",
+      "answer": "Private by default."
+    },
+    {
+      "question": "What does `#allocate` do?  ",
+      "answer": "It creates an uninitialized instance of a class."
+    },
+    {
+      "question": "What is an eigenclass?  ",
+      "answer": "An anonymous class associated with an object. An object's singleton methods are instance methods of its associated eigenclass."
+    },
+    {
+      "question": "What is the relationship between singleton methods and class methods?  ",
+      "answer": "Class methods are singleton methods of the eigenclass associated with the class object."
+    },
+    {
+      "question": "What is `Class::new`?  ",
+      "answer": "A class method of the `Class` object which creates new classes."
+    },
+    {
+      "question": "If `Class` `B` is nested within `Class` `A`, and there exists a class method on `A`, does `Class` `B` then have access to this instance method on `Class` `A`?  ",
+      "answer": "No. Nesting one class within another does not give the inner class any special access to the methods or variables of the outer class."
+    },
+    {
+      "question": "Are eigenclasses inherited?  ",
+      "answer": "The eigenclasses of an object are inherited from the eigenclasses of the superclass of the class object. An eigenclass of an object instance stands alone and does not inherit from any other classes."
+    },
+    {
+      "question": "What happens to any return value of `#initialize`?  ",
+      "answer": "It is ignored."
+    },
+    {
+      "question": "What is a factory method?  ",
+      "answer": "An initialization method that creates specialized instances of a class."
+    },
+    {
+      "question": "What is the method to run initialization code on copied instances of an object?  ",
+      "answer": "`#initialize_copy`"
+    },
+    {
+      "question": "Does `#initialize_copy` override `#initialize`?  ",
+      "answer": "No."
+    },
+    {
+      "question": "What does it mean that `#dup` and `#clone` perform shallow copies?  ",
+      "answer": "The instance variables of the copy are copied by reference rather than by value."
+    },
+    {
+      "question": "What is the difference between `#dup` and `#clone`?  ",
+      "answer": "`#clone` copies the frozen state of an object and any singleton methods of an object while `#dup` does neither."
+    }
+  ],
+  "Modules": [
+    {
+      "question": "What are two main functions of modules?  ",
+      "answer": "As mixins or as namespaces."
+    },
+    {
+      "question": "Can a module be subclassed?  ",
+      "answer": "No."
+    },
+    {
+      "question": "What happens when a class includes a module?  ",
+      "answer": "The instance methods of the module become instance methods of the class."
+    },
+    {
+      "question": "What happens when an object extends a module?  ",
+      "answer": "The instance methods of the module become singleton methods on the object."
+    },
+    {
+      "question": "What is the superclass of `Class`?  ",
+      "answer": "`Module`"
+    },
+    {
+      "question": "Why must module names begin with a capital letter?  ",
+      "answer": "Because the module keyword creates a new constant that refers to the module and constants begin with a capital letter."
+    },
+    {
+      "question": "How would you check if a module has been included by an object?  ",
+      "answer": "Using `#is_a?` such as with `my_obj.is_a? MyModule`."
+    },
+    {
+      "question": "What does `#module_function` do?  ",
+      "answer": "Makes class copies of the specified methods and makes instance methods private."
+    }
+  ],
+  "Structs": [
+    {
+      "question": "What is a `Struct` in Ruby?  ",
+      "answer": "A core Ruby class that generates other classes containing accessor methods for the specified fields."
+    },
+    {
+      "question": "Can methods be added to a `Struct`?  ",
+      "answer": "Yes."
+    }
+  ],
+  "Inheritance": [
+    {
+      "question": "What's the difference between `#is_a?` and `#instance_of?`?  ",
+      "answer": "`#instance_of?` ignores inheritance and any mixed-in modules."
+    },
+    {
+      "question": "If `#super` is invoked without any arguments, which if any arguments get passed to the superclass method?  ",
+      "answer": "All arguments that were passed to the subclass method will be passed to the superclass method."
+    },
+    {
+      "question": "Are singleton methods inherited?  ",
+      "answer": "No, since they are not defined by a class and thus are unrelated to the inheritance mechanism."
+    },
+    {
+      "question": "Are class methods inherited?  ",
+      "answer": "Yes."
+    },
+    {
+      "question": "Are constants inherited?  ",
+      "answer": "Yes."
+    },
+    {
+      "question": "Are class variables inherited?  ",
+      "answer": "No. The behavior is different than inheritance. Any alteration of a class variable by a subclass affects that class variable in the superclass and all other subclasses of the superclass."
+    },
+    {
+      "question": "Why might you want to avoid the use of class variables?  ",
+      "answer": "Their values can be changed at any point in the inheritance chain which can cause unexpected behavior in parent classes or subclasses which use those class variables."
+    },
+    {
+      "question": "What should you watch out for when subclassing a class that is unknown to you?  ",
+      "answer": "Overriding private methods or overwriting class variables."
+    },
+    {
+      "question": "How might you prevent a method on a superclass from being inherited by a subclass?  ",
+      "answer": "Override the method on the subclass or `undef` the method in the subclass."
+    }
+  ],
+  "Metaprogramming": [
+    {
+      "question": "Can `#attr_reader` be considered an example of metaprogramming?  ",
+      "answer": "Yes, since it creates getter methods at the time of the enclosing class definition."
+    },
+    {
+      "question": "How might you access an instance variable of a receiver object from outside the scope of the receiver object?  ",
+      "answer": "With an accessor method or using `#instance_variables_get`, `#instance_eval`, or `binding.eval`."
+    },
+    {
+      "question": "Which method is invoked when a method is not found?  ",
+      "answer": "`#method_missing`"
+    },
+    {
+      "question": "How can you open an eigenclass from within its associated class?  ",
+      "answer": "`class << self`"
+    },
+    {
+      "question": "What is a binding?  ",
+      "answer": "A representation of an object's variable bindings at some moment."
+    },
+    {
+      "question": "What is Ruby's reflection API?  ",
+      "answer": "A collection of methods mostly defined by `Kernel`, `Object`, and `Module` that allow a program to examine its own state and structure."
+    },
+    {
+      "question": "Which method is called when a constant is not found?  ",
+      "answer": "`#const_missing`"
+    },
+    {
+      "question": "`#define_method` accepts how many and of what types of arguments?  ",
+      "answer": "A symbol as the method name and either a block or a `Method` object as the method body."
+    },
+    {
+      "question": "Can `#eval` accept a block?  ",
+      "answer": "No, `#eval` can only accept a string. `#class_eval` and `#instance_eval` can accept blocks."
+    },
+    {
+      "question": "How might you obtain a reference to an eigenclass from within its associated class?  ",
+      "answer": "`#singleton_class`, `eigenclass = class << self; self; end`"
+    },
+    {
+      "question": "How might you alter method visibility from outside a class definition?  ",
+      "answer": "Using `#class_eval`"
+    },
+    {
+      "question": "What is the difference between `#instance_eval` and `#instance_exec`?  ",
+      "answer": "`#instance_exec` can only accept a block, not a string, and it can accept arguments and pass them to the block, allowing the block to be evaluated in the context of the receiver object with parameters whose values come from the block."
+    },
+    {
+      "question": "Where do `#class_variable_get` and `#class_variables_set` live in the object model?  ",
+      "answer": "`Module`"
+    },
+    {
+      "question": "Where do `#instance_variable_get` and `#instance_variable_set` live in the object model?  ",
+      "answer": "`Object`"
+    },
+    {
+      "question": "Where do `#local_variables` and `#global_variables` live in the object model?  ",
+      "answer": "`Kernel`"
+    }
+  ],
+  "Loading Modules, Files, and Gems": [
+    {
+      "question": "What is `$LOAD_PATH`?  ",
+      "answer": "A global array of strings of the directories to be searched when loading files with the load and require methods. `$LOAD_PATH` is equivalent to `$:`."
+    },
+    {
+      "question": "What is the difference between `#require` and `#load`?  ",
+      "answer": "`#require` can load binary extensions. `#require` does not require a filename extension. `#require` prevents multiple loads of the same file path. `#load` loads the specified file at the current `$SAFE` level while `#require` loads the specified file with a `$SAFE` level of 0."
+    },
+    {
+      "question": "Does a file loaded with `#require` or `#load` have access to the local variables of the referencing file?  ",
+      "answer": "No."
+    },
+    {
+      "question": "What is the difference between `#require` and `#require_relative`?  ",
+      "answer": "`#require_relative` ignores the load path."
+    },
+    {
+      "question": "What does `#autoload` do?  ",
+      "answer": "Allows lazy-loading of files when a constant assigned to a file is first referenced."
+    },
+    {
+      "question": "What does `File#expand_path` do?  ",
+      "answer": "Converts a relative path to a fully qualified path."
+    },
+    {
+      "question": "What method in `Dir` can be used to list the contents of a directory?  ",
+      "answer": "`#entries`, `#foreach`..."
+    },
+    {
+      "question": "What is an `IO` object?  ",
+      "answer": "An IO object is an instance of class `IO` that can be used for reading or writing binary data to and from a file."
+    },
+    {
+      "question": "Are RubyGems installation directories included in `$LOAD_PATH`?  ",
+      "answer": "Yes."
+    },
+    {
+      "question": "If more than one version of a Gem is installed, which version will be used?  ",
+      "answer": "The Gem with the highest version number."
+    },
+    {
+      "question": "How might you alter the default version of a Gem that will be used?  ",
+      "answer": "Using `Kernel#gem`."
+    }
+  ],
+  "Security": [
+    {
+      "question": "What can you say about objects derived from tainted objects?  ",
+      "answer": "They will also be tainted."
+    },
+    {
+      "question": "What is the default `$SAFE` level?  ",
+      "answer": "0"
+    },
+    {
+      "question": "What happens when you attempt to lower the `$SAFE` level?  ",
+      "answer": "The `$SAFE` level cannot be lowered; it can only be raised."
+    },
+    {
+      "question": "What is the difference between taint and trust?  ",
+      "answer": "Taint is derived from the environment such as the command line, environment variables, files, sockets, etc..., while trust is derived from the `$SAFE` level of the originating code. Untrusted objects are both untrusted and tainted."
+    }
+  ],
+  "Exceptions": [
+    {
+      "question": "What error is raised if a method is passed the wrong number of arguments?  ",
+      "answer": "`ArgumentError`"
+    },
+    {
+      "question": "What error is raised if method name resolution fails?  ",
+      "answer": "`NoMethodError`"
+    },
+    {
+      "question": "The superclass of `StandardError` is __.  ",
+      "answer": "`Exception`"
+    },
+    {
+      "question": "What does the default implementation of `BasicObject#method_missing` do?  ",
+      "answer": "Raises a `NoMethodError`."
+    },
+    {
+      "question": "What happens if you attempt to redefine `BasicObject#__send__`?  ",
+      "answer": "Ruby issues a warning."
+    }
+  ],
+  "Debugging": [
+    {
+      "question": "What is the difference between `#to_s` and `#inspect`?  ",
+      "answer": "`#inspect` is the same as `#to_s`, except some classes redefine `#inspect` to provide output that is more helpful in debugging."
+    },
+    {
+      "question": "What is the difference between `#puts` and `#p`?  ",
+      "answer": "`#p` converts objects to strings with the `#inspect` method instead of with `#to_s`."
+    },
+    {
+      "question": "Which Ruby interpreter option enables debugging?  ",
+      "answer": "`-d` / `--debug`"
+    },
+    {
+      "question": "What is the global variable for the last exception raised?  ",
+      "answer": "`$ERROR_INFO` equivalent to `$!`"
+    },
+    {
+      "question": "How can you obtain the current state of the call stack?  ",
+      "answer": "Using `Exception.backtrace` or `Kernel#caller`"
+    },
+    {
+      "question": "What does `Kernel#__method__` return?  ",
+      "answer": "The name of the currently executing method as a symbol."
+    },
+    {
+      "question": "What is the synonym of `Kernel#__method__`?  ",
+      "answer": "`Kernel#__callee__`"
+    }
+  ],
+  "The Ruby Environment and the Interpreter": [
+    {
+      "question": "What is the difference between `#puts` and `#prints`?  ",
+      "answer": "`#puts` appends a newline to the output."
+    },
+    {
+      "question": "Where do the curly brackets to define a hash literal `{}` exist in the object model?  ",
+      "answer": "It does not exist within the object model - it is a function of the interpreter."
+    },
+    {
+      "question": "What is the default encoding in MRI?  ",
+      "answer": "UTF-8"
+    },
+    {
+      "question": "How does Ruby know that a setter method such as `X#[]=` should be called in the expression `x.field = []`?  ",
+      "answer": "It is a syntactical conversion in the interpreter."
+    },
+    {
+      "question": "What is the global constant to access arguments specified on the command line?  ",
+      "answer": "`ARGV`"
+    },
+    {
+      "question": "Which interpreter option enables warning about deprecated or problematic code?  ",
+      "answer": "`-w`"
+    },
+    {
+      "question": "In MRI, which objects are not subject to garbage collection?  ",
+      "answer": "Symbols."
+    },
+    {
+      "question": "What module in the standard library enables English language alternatives to terse global variables?  ",
+      "answer": "`English`"
+    }
+  ]
+}
