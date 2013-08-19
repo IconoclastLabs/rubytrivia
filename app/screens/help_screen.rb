@@ -3,7 +3,7 @@ class HelpScreen < PM::GroupedTableScreen
 
   def table_data
     @help_table_data ||= [{
-      title: "Get Help",
+      title: "Settings for stuff",
       cells: [{
         title: "Email us", action: :email_us,
         title: "Open Modal", action: :modal_tapped
