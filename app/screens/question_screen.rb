@@ -3,6 +3,11 @@ class QuestionScreen < PM::Screen
 
   title "Ruby Trivia"
 
+  def on_load
+    ap "Label is #{@label}"
+    @trivia = Trivia.new
+  end
+  
   def will_appear
     @view_setup ||= set_up_view
   end
@@ -12,16 +17,17 @@ class QuestionScreen < PM::Screen
     add @label = UILabel.new, stylename: :my_label
     add @seg = UISegmentedControl.bar(["Settings","New Question","Answer"]), stylename: :segmented
     ap "Added label"
+
+    # button actions
+    @seg.on(:change) { 
+      ap "Touched!"
+      @label.text = @trivia.next_line
+      @label.fit_to_size(40)
+    }
+
     true
   end
 
-  def on_load
-    ap "Label is #{@label}"
-    @trivia = Trivia.new
-    @trivia.next_line
-    #label.text = @trivia.next_line
-    #@trivia.fit_to_size(40)
 
-  end
 
 end
