@@ -4,7 +4,7 @@ class QuestionScreen < PM::Screen
   title "Ruby Trivia"
 
   def on_load
-    ap "Label is #{@label}"
+    set_nav_bar_button :right, title: "Settings", action: :settings_tapped
     @trivia = Trivia.new
   end
   
@@ -15,19 +15,22 @@ class QuestionScreen < PM::Screen
   def set_up_view
     set_attributes self.view, stylename: :question_view
     add @label = UILabel.new, stylename: :my_label
-    add @seg = UISegmentedControl.bar(["Settings","New Question","Answer"]), stylename: :segmented
-    ap "Added label"
+    add @seg = UISegmentedControl.bar(["New Question","Answer"]), stylename: :segmented
 
     # button actions
-    @seg.on(:change) { 
-      ap "Touched!"
+    @seg.on(:change) { ||
+      ap "Touched! #{@seg.selectedSegmentIndex}"
       @label.text = @trivia.next_line
       @label.fit_to_size(40)
+      @seg.setSelectedSegmentIndex(UISegmentedControlNoSegment)
     }
 
     true
   end
 
-
+  def settings_tapped
+    ap "Settings Called"
+    open_modal ModalScreen.new(nav_bar: true)
+  end
 
 end
