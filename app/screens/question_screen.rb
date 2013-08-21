@@ -24,6 +24,7 @@ class QuestionScreen < PM::Screen
       case @seg.selectedSegmentIndex
       when 0
         ap "NEXT!"
+
         @label.text = @trivia.next_line
       when 1
         ap "Answer!"
@@ -46,7 +47,10 @@ class QuestionScreen < PM::Screen
 
   def help_tapped
     ap "Help Called"
-    open_modal ModalScreen.new(nav_bar: true)
+    modal = ModalScreen.new(nav_bar: true)
+    # Proof of how to flip the screen for this
+    modal.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal
+    open_modal modal
   end
 
 end
