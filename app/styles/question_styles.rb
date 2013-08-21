@@ -10,7 +10,7 @@ Teacup::Stylesheet.new :question_stylesheet do
     numberOfLines: 0,
     textAlignment: UITextAlignmentCenter,
     font: UIFont.boldSystemFontOfSize(18.0),
-    frame: CGRectMake(10, 10, 300, 45)
+    frame: CGRectMake(10, 10, 300, 400)
 
   style :segmented,
     constraints: [

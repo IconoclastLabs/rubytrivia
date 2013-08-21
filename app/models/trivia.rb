@@ -2,25 +2,33 @@ class Trivia
   attr_accessor :lines, :current_quip
 
   def initialize
-    @current_quip = ""
+    @current_quip = {}
     @lines = []
   end
 
   def next_line
     self.filter_quips if @lines.size < 1
     @current_quip = @lines.pop
+    @current_quip["question"]
   end
 
   def filter_quips
     @quips = self.seed_quips
     # Populate lines from live categories
     @lines = [] #make sure it's empty
-    #$categories.live_list.each do |cat|
-    #  @lines += @quips[cat]
-    #end
+
+    #$junk = @quips
+    # $categories.live_list.each do |cat|
+    #   @lines += @quips[cat]
+    # end
+
+    @quips.keys.sort.each do |cat|
+      @lines += @quips[cat]
+    end
+
 
     @lines.shuffle!
-    @lines.push("No categories selected.") if @lines.empty?
+    @lines.push({"answer"=>"Click on Settings!.", "question"=>"No Categories Selected"}) if @lines.empty?
     ap "Filtered Lines!"
   end
 
