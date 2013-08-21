@@ -4,6 +4,7 @@ class QuestionScreen < PM::Screen
   title "Ruby Trivia"
 
   def on_load
+    set_nav_bar_button :left, title: "Help", action: :help_tapped
     set_nav_bar_button :right, title: "Settings", action: :settings_tapped
     @trivia = Trivia.new
   end
@@ -39,8 +40,13 @@ class QuestionScreen < PM::Screen
 
   def settings_tapped
     ap "Settings Called"
-    open_modal HelpScreen.new(nav_bar: true)
+    open SettingsScreen.new(nav_bar: true)
     #open_modal ModalScreen.new(nav_bar: true)
+  end
+
+  def help_tapped
+    ap "Help Called"
+    open_modal ModalScreen.new(nav_bar: true)
   end
 
 end

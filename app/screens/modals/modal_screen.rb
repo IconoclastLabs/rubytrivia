@@ -1,5 +1,5 @@
 class ModalScreen < PM::Screen
-  title "I'm a Modal"
+  title "Help"
   
   def will_appear
     @view_is_set_up ||= set_up_view
