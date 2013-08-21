@@ -18,10 +18,19 @@ class QuestionScreen < PM::Screen
     add @seg = UISegmentedControl.bar(["New Question","Answer"]), stylename: :segmented
 
     # button actions
-    @seg.on(:change) { ||
+    @seg.on(:change) {
       ap "Touched! #{@seg.selectedSegmentIndex}"
-      @label.text = @trivia.next_line
+      case @seg.selectedSegmentIndex
+      when 0
+        ap "NEXT!"
+        @label.text = @trivia.next_line
+      when 1
+        ap "Answer!"
+        @label.text = @trivia.current_quip["answer"]
+      end
+
       @label.fit_to_size(40)
+      #unselect
       @seg.setSelectedSegmentIndex(UISegmentedControlNoSegment)
     }
 
