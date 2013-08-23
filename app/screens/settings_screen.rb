@@ -1,5 +1,6 @@
 # Gonna have to switch this to formotion https://github.com/clayallsopp/formotion
 class SettingsScreen < PM::FormotionScreen
+  attr_accessor :trivia
   title "Settings"
 
   def table_data
@@ -40,6 +41,8 @@ class SettingsScreen < PM::FormotionScreen
 
     #manually invoking persist of formotion
     # https://github.com/clayallsopp/formotion/blob/master/lib/formotion/form/form.rb#L25
+    # submitted pull request 142 to Formotion to make this easier
+    # https://github.com/clayallsopp/formotion/pull/142
     self.form.open
     self.form.init_observer_for_save
 

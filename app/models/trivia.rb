@@ -22,10 +22,9 @@ class Trivia
     #   @lines += @quips[cat]
     # end
 
-    @quips.keys.sort.each do |cat|
+    categories.each do |cat|
       @lines += @quips[cat]
     end
-
 
     @lines.shuffle!
     @lines.push({"answer"=>"Click on Settings!.", "question"=>"No Categories Selected"}) if @lines.empty?
@@ -37,6 +36,10 @@ class Trivia
     seed_file = NSBundle.mainBundle.pathForResource('qa', ofType:'json')
     json_string = String.new(NSString.stringWithContentsOfFile(seed_file))
     BW::JSON.parse(json_string)
+  end
+
+  def categories
+    @quips.keys.sort
   end
 
 end

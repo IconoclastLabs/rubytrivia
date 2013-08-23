@@ -41,7 +41,7 @@ class QuestionScreen < PM::Screen
 
   def settings_tapped
     ap "Settings Called"
-    open SettingsScreen.new(nav_bar: true)
+    open SettingsScreen.new(trivia: @trivia, nav_bar: true)
     #open_modal ModalScreen.new(nav_bar: true)
   end
 
