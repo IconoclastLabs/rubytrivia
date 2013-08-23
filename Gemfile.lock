@@ -11,6 +11,9 @@ GEM
     choice (0.1.6)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
+    formotion (1.4.0)
+      bubble-wrap (~> 1.3.0)
+      motion-require (~> 0.0.3)
     git (1.2.6)
     httmultiparty (0.3.10)
       httparty (>= 0.7.3)
@@ -40,6 +43,7 @@ GEM
     mime-types (1.24)
     mini_magick (3.6.0)
       subexec (~> 0.2.1)
+    motion-require (0.0.7)
     multi_json (1.7.9)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
@@ -63,6 +67,7 @@ DEPENDENCIES
   ProMotion
   awesome_print_motion
   bubble-wrap
+  formotion
   lolcommits
   sugarcube
   teacup

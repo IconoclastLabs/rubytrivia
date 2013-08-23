@@ -1,27 +1,55 @@
 # Gonna have to switch this to formotion https://github.com/clayallsopp/formotion
-class SettingsScreen < PM::GroupedTableScreen
+class SettingsScreen < PM::FormotionScreen
   title "Settings"
 
   def table_data
-    @help_table_data ||= [{ 
-      title: "Question Categories",
-        cells: [
-          { title: "Category1"},
-          { title: "Category2"}
-        ]
-    },{ 
-      title: "Credits",
-        cells: [
-          { title: "Programming: Iconoclast Labs", action: :email_us },
-          { title: "Questions: via Github ruby-trivia" },
-          { title: "Background: SubtlePatterns.com"},
-          { title: "Help", action: :modal_tapped}
-        ]
-    }]
+    @help_table_data ||= 
+    {
+      persist_as: :settings,
+      sections: [{ 
+        title: "Question Categories",
+          rows: [
+            { 
+              title: "Category1",
+              key: :Category1,
+              type: :switch,
+              value: true
+            },
+            { 
+              title: "Category2",
+              key: :Category2,
+              type: :switch,
+              value: true
+            }
+          ]
+      },{ 
+        title: "Credits",
+          rows: [
+            { title: "Programming: Iconoclast Labs", key: :us, type: :static},
+            { title: "Questions: via Github ruby-trivia", key: :questions, type: :static },
+            { title: "Background: SubtlePatterns.com", key: :credit, type: :static}
+          ]
+      }]
+    }
+
+  end
+
+  def on_load
+    # If the next line is commented out, this crashes! wat!?
+    $form = self.form
+
+    #manually invoking persist of formotion
+    # https://github.com/clayallsopp/formotion/blob/master/lib/formotion/form/form.rb#L25
+    self.form.open
+    self.form.init_observer_for_save
+
+    self.form.row(:us).on_tap do |row|
+      email_us
+    end
   end
 
   def email_us
-    mailto_link = NSURL.URLWithString("mailto:developers@iconoclastlabs.com")
+    mailto_link = "mailto:developers@iconoclastlabs.com".nsurl
     UIApplication.sharedApplication.openURL(mailto_link)
   end
   
