@@ -41,16 +41,18 @@ class QuestionScreen < PM::Screen
 
   def settings_tapped
     ap "Settings Called"
-    open SettingsScreen.new(trivia: @trivia, nav_bar: true)
+    settings = SettingsScreen.new(nav_bar: true)
+    settings.trivia = @trivia
+    open settings
     #open_modal ModalScreen.new(nav_bar: true)
   end
 
   def help_tapped
     ap "Help Called"
-    modal = ModalScreen.new(nav_bar: true)
+    modal = ModalScreen.new(nav_bar: true, trivia: @trivia)
     # Proof of how to flip the screen for this
     modal.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal
-    open_modal modal
+    open_modal modal 
   end
 
 end

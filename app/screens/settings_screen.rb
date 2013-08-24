@@ -36,6 +36,7 @@ class SettingsScreen < PM::FormotionScreen
   end
 
   def on_load
+    ap tableize_categories
     # If the next line is commented out, this crashes! wat!?
     $form = self.form
 
@@ -51,17 +52,23 @@ class SettingsScreen < PM::FormotionScreen
     end
   end
 
-  def email_us
-    mailto_link = "mailto:developers@iconoclastlabs.com".nsurl
-    UIApplication.sharedApplication.openURL(mailto_link)
-  end
-  
-  def modal_tapped
-    open_modal ModalScreen.new(nav_bar: true)
-  end
-  
-  def on_return(args={})
-    PM.logger.info args
-  end
+  private
+
+    def tableize_categories
+      @trivia #.categories
+    end
+
+    def email_us
+      mailto_link = "mailto:developers@iconoclastlabs.com".nsurl
+      UIApplication.sharedApplication.openURL(mailto_link)
+    end
+    
+    def modal_tapped
+      open_modal ModalScreen.new(nav_bar: true)
+    end
+    
+    def on_return(args={})
+      PM.logger.info args
+    end
   
 end

@@ -22,9 +22,10 @@ class Trivia
     #   @lines += @quips[cat]
     # end
 
-    categories.each do |cat|
+    @quips.keys.sort.each do |cat|
       @lines += @quips[cat]
     end
+
 
     @lines.shuffle!
     @lines.push({"answer"=>"Click on Settings!.", "question"=>"No Categories Selected"}) if @lines.empty?
@@ -38,8 +39,8 @@ class Trivia
     BW::JSON.parse(json_string)
   end
 
-  def categories
-    @quips.keys.sort
-  end
+  # def categories
+  #   @quips.keys.sort
+  # end
 
 end
