@@ -17,11 +17,6 @@ class Trivia
     # Populate lines from live categories
     @lines = [] #make sure it's empty
 
-    #$junk = @quips
-    # $categories.live_list.each do |cat|
-    #   @lines += @quips[cat]
-    # end
-
     categories.each do |cat|
       @lines += @quips[cat]
     end

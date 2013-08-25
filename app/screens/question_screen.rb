@@ -1,6 +1,5 @@
 class QuestionScreen < PM::Screen
   stylesheet :question_stylesheet
-
   title "Ruby Trivia"
 
   def on_load
@@ -16,42 +15,51 @@ class QuestionScreen < PM::Screen
   def set_up_view
     set_attributes self.view, stylename: :question_view
     add @label = UILabel.new, stylename: :my_label
-    add @seg = UISegmentedControl.bar(["New Question","Answer"]), stylename: :segmented
 
-    # button actions
-    @seg.on(:change) {
-      ap "Touched! #{@seg.selectedSegmentIndex}"
-      case @seg.selectedSegmentIndex
-      when 0
-        ap "NEXT!"
-        @label.text = @trivia.next_line
-        @label.fit_to_size(40)
-      when 1
-        ap "Answer!"
-        answer = AnswerScreen.new(nav_bar: true, answer: @trivia.current_quip["answer"])
-        answer.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal
-        open_modal answer
-      end
+    view.on_tap do
+      ap "Tapped: Show Answer"
+      answer = AnswerScreen.new(nav_bar: true, answer: @trivia.current_quip["answer"])
+      answer.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal
+      open_modal answer
+    end
 
-      #unselect
-      @seg.setSelectedSegmentIndex(UISegmentedControlNoSegment)
-    }
-
+    $junk = @label
+    view.on_swipe :left do
+      ap "Swiped: Show Next"
+      new_question @label, @trivia.next_line
+    end
     true
   end
 
-  def settings_tapped
-    ap "Settings Called"
-    settings = SettingsScreen.new(nav_bar: true, trivia: @trivia)
-    open settings
-  end
+  private
 
-  def help_tapped
-    ap "Help Called"
-    modal = ModalScreen.new(nav_bar: true, trivia: @trivia)
-    # Proof of how to flip the screen for this
-    modal.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal
-    open_modal modal 
-  end
+    # simply slides away the current question with a fade,
+    # invisibly sets the new text and fades it in
+    # ~ thank you sugarcube!
+    def new_question question_view, new_question
+      start_frame = question_view.frame
+      UIView.animation_chain do
+        question_view.fade_out
+        question_view.slide :left
+      end.and_then do
+        question_view.text = new_question
+        question_view.fit_to_size(40)
+        question_view.frame = start_frame
+      end.and_then do
+        question_view.fade_in
+      end.start
+    end
+
+    def settings_tapped
+      ap "Settings Called"
+      settings = SettingsScreen.new(nav_bar: true, trivia: @trivia)
+      open settings
+    end
+
+    def help_tapped
+      ap "Help Called"
+      modal = ModalScreen.new(nav_bar: true)
+      open_modal modal 
+    end
 
 end

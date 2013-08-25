@@ -9,13 +9,20 @@ class AnswerScreen < PM::Screen
   end
 
   def set_up_view
-    set_nav_bar_button :left, title: "Close", action: :close_modal_tapped
     set_attributes self.view, stylename: :question_view
     add @label = UILabel.new, stylename: :my_label
+
+    # Close modal on tap
+    view.on_tap do
+      close
+    end
+
+    view.on_swipe :left do
+      ap "Swiped on Answer: Show that it is no function"
+      view.shake
+    end
+    
     true
   end
-  
-  def close_modal_tapped
-    close foo: true
-  end
+
 end
