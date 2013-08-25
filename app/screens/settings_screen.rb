@@ -3,31 +3,41 @@ class SettingsScreen < PM::FormotionScreen
   attr_accessor :trivia
   title "Settings"
 
+  # when 14 question categories are live, this crashes...!?
   def table_data
     @help_table_data ||= 
     {
       persist_as: :settings,
       sections: [{ 
         title: "Question Categories",
-          rows: [
-            {
-              title: "Cat1",
-              key: :cat1,
-              type: :switch,
-              value: true
-            },
-            {
-              title: "Cat2",
-              key: :cat2,
-              type: :switch,
-              value: true
-            }
-          ]
+          rows: #category_rows
+            [
+              {:title=>"Blocks and Iterators", :key=>:blocksanditerators, :type=>:switch, :value=>true},
+              {:title=>"Classes", :key=>:classes, :type=>:switch, :value=>true}, 
+              {:title=>"Closures", :key=>:closures, :type=>:switch, :value=>true}, 
+              {:title=>"Constants", :key=>:constants, :type=>:switch, :value=>true}, 
+              {:title=>"Control Structures", :key=>:controlstructures, :type=>:switch, :value=>true}, 
+              {:title=>"Data Types", :key=>:datatypes, :type=>:switch, :value=>true}, 
+              {:title=>"Debugging", :key=>:debugging, :type=>:switch, :value=>true}, 
+              {:title=>"Exceptions", :key=>:exceptions, :type=>:switch, :value=>true}, 
+              #{:title=>"Inheritance", :key=>:inheritance, :type=>:switch, :value=>true},
+              {:title=>"Language Characteristics and Core Objects", :key=>:languagecharacteristicsandcoreobjects, :type=>:switch, :value=>true}, 
+              {:title=>"Loading Modules, Files, and Gems", :key=>:loadingmodulesfilesandgems, :type=>:switch, :value=>true}, 
+              {:title=>"Metaprogramming", :key=>:metaprogramming, :type=>:switch, :value=>true}, 
+              {:title=>"Method Objects", :key=>:methodobjects, :type=>:switch, :value=>true}, 
+              #{:title=>"Methods", :key=>:methods, :type=>:switch, :value=>true}, 
+              #{:title=>"Modules", :key=>:modules, :type=>:switch, :value=>true}, 
+              # {:title=>"Operators", :key=>:operators, :type=>:switch, :value=>true}, 
+              # {:title=>"Procs and Lambdas", :key=>:procsandlambdas, :type=>:switch, :value=>true}, 
+              {:title=>"Security", :key=>:security, :type=>:switch, :value=>true}, 
+              # {:title=>"Structs", :key=>:structs, :type=>:switch, :value=>true}, 
+              #{:title=>"The Ruby Environment and the Interpreter", :key=>:therubyenvironmentandtheinterpreter, :type=>:switch, :value=>true}
+            ]
       },{ 
         title: "Credits",
           rows: [
-            { title: "Programming: Iconoclast Labs", key: :us, type: :static},
-            { title: "Questions: via Github ruby-trivia", key: :questions, type: :static },
+            { title: "Code by Iconoclast Labs", key: :us, type: :static},
+            { title: "Questions via Github ruby-trivia", key: :questions, type: :static },
             { title: "Background: SubtlePatterns.com", key: :credit, type: :static}
           ]
       }]
@@ -36,16 +46,8 @@ class SettingsScreen < PM::FormotionScreen
   end
 
   def on_load
-    ap "Load called"
     # If the next line is commented out, this crashes! wat!?
     $form = self.form
-
-    #manually invoking persist of formotion
-    # https://github.com/clayallsopp/formotion/blob/master/lib/formotion/form/form.rb#L25
-    # submitted pull request 142 to Formotion to make this easier
-    # https://github.com/clayallsopp/formotion/pull/142
-    self.form.open
-    self.form.init_observer_for_save
 
     self.form.row(:us).on_tap do |row|
       email_us
@@ -59,7 +61,7 @@ class SettingsScreen < PM::FormotionScreen
       @trivia.categories.each do |category|
         all_categories << {
           title: category,
-          key: category.to_sym,
+          key: category.downcase.to_sym,
           type: :switch,
           value: true
         }

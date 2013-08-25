@@ -22,7 +22,7 @@ class Trivia
     #   @lines += @quips[cat]
     # end
 
-    @quips.keys.sort.each do |cat|
+    categories.each do |cat|
       @lines += @quips[cat]
     end
 
