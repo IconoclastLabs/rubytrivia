@@ -10,15 +10,15 @@ class SettingsScreen < PM::FormotionScreen
       sections: [{ 
         title: "Question Categories",
           rows: [
-            { 
-              title: "Category1",
-              key: :Category1,
+            {
+              title: "Cat1",
+              key: :cat1,
               type: :switch,
               value: true
             },
-            { 
-              title: "Category2",
-              key: :Category2,
+            {
+              title: "Cat2",
+              key: :cat2,
               type: :switch,
               value: true
             }
@@ -36,7 +36,7 @@ class SettingsScreen < PM::FormotionScreen
   end
 
   def on_load
-    ap tableize_categories
+    ap "Load called"
     # If the next line is commented out, this crashes! wat!?
     $form = self.form
 
@@ -54,8 +54,17 @@ class SettingsScreen < PM::FormotionScreen
 
   private
 
-    def tableize_categories
-      @trivia #.categories
+    def category_rows
+      all_categories = []
+      @trivia.categories.each do |category|
+        all_categories << {
+          title: category,
+          key: category.to_sym,
+          type: :switch,
+          value: true
+        }
+      end
+      all_categories
     end
 
     def email_us

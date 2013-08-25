@@ -4,6 +4,7 @@ class Trivia
   def initialize
     @current_quip = {}
     @lines = []
+    @quips = self.seed_quips
   end
 
   def next_line
@@ -13,7 +14,6 @@ class Trivia
   end
 
   def filter_quips
-    @quips = self.seed_quips
     # Populate lines from live categories
     @lines = [] #make sure it's empty
 
@@ -25,7 +25,6 @@ class Trivia
     @quips.keys.sort.each do |cat|
       @lines += @quips[cat]
     end
-
 
     @lines.shuffle!
     @lines.push({"answer"=>"Click on Settings!.", "question"=>"No Categories Selected"}) if @lines.empty?
@@ -39,8 +38,8 @@ class Trivia
     BW::JSON.parse(json_string)
   end
 
-  # def categories
-  #   @quips.keys.sort
-  # end
+  def categories
+    @quips.keys.sort
+  end
 
 end
