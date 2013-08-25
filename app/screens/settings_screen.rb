@@ -10,29 +10,7 @@ class SettingsScreen < PM::FormotionScreen
       persist_as: :settings,
       sections: [{ 
         title: "Question Categories",
-          rows: #category_rows
-            [
-              {:title=>"Blocks and Iterators", :key=>:blocksanditerators, :type=>:switch, :value=>true},
-              {:title=>"Classes", :key=>:classes, :type=>:switch, :value=>true}, 
-              {:title=>"Closures", :key=>:closures, :type=>:switch, :value=>true}, 
-              {:title=>"Constants", :key=>:constants, :type=>:switch, :value=>true}, 
-              {:title=>"Control Structures", :key=>:controlstructures, :type=>:switch, :value=>true}, 
-              {:title=>"Data Types", :key=>:datatypes, :type=>:switch, :value=>true}, 
-              {:title=>"Debugging", :key=>:debugging, :type=>:switch, :value=>true}, 
-              {:title=>"Exceptions", :key=>:exceptions, :type=>:switch, :value=>true}, 
-              #{:title=>"Inheritance", :key=>:inheritance, :type=>:switch, :value=>true},
-              {:title=>"Language Characteristics and Core Objects", :key=>:languagecharacteristicsandcoreobjects, :type=>:switch, :value=>true}, 
-              {:title=>"Loading Modules, Files, and Gems", :key=>:loadingmodulesfilesandgems, :type=>:switch, :value=>true}, 
-              {:title=>"Metaprogramming", :key=>:metaprogramming, :type=>:switch, :value=>true}, 
-              {:title=>"Method Objects", :key=>:methodobjects, :type=>:switch, :value=>true}, 
-              #{:title=>"Methods", :key=>:methods, :type=>:switch, :value=>true}, 
-              #{:title=>"Modules", :key=>:modules, :type=>:switch, :value=>true}, 
-              # {:title=>"Operators", :key=>:operators, :type=>:switch, :value=>true}, 
-              # {:title=>"Procs and Lambdas", :key=>:procsandlambdas, :type=>:switch, :value=>true}, 
-              {:title=>"Security", :key=>:security, :type=>:switch, :value=>true}, 
-              # {:title=>"Structs", :key=>:structs, :type=>:switch, :value=>true}, 
-              #{:title=>"The Ruby Environment and the Interpreter", :key=>:therubyenvironmentandtheinterpreter, :type=>:switch, :value=>true}
-            ]
+          rows: category_rows
       },{ 
         title: "Credits",
           rows: [
@@ -56,17 +34,24 @@ class SettingsScreen < PM::FormotionScreen
 
   private
 
+    # Crashes when more than 14 are allowed
+    # significantly slows everything down when more than 10
     def category_rows
       all_categories = []
       @trivia.categories.each do |category|
         all_categories << {
           title: category,
-          key: category.downcase.to_sym,
+          key: clean_symbol(category),
           type: :switch,
           value: true
-        }
+        } if all_categories.size < 7
       end
       all_categories
+    end
+
+    def clean_symbol string
+      #only word characters, lowercased
+      string.gsub(/\W+/, "").downcase.to_sym
     end
 
     def email_us

@@ -9,7 +9,7 @@ Teacup::Stylesheet.new :question_stylesheet do
     #shadowColor: UIColor.blackColor,
     numberOfLines: 0,
     textAlignment: UITextAlignmentCenter,
-    font: UIFont.boldSystemFontOfSize(18.0),
+    font: UIFont.boldSystemFontOfSize(40),
     frame: CGRectMake(10, 10, 300, 400)
 
   style :segmented,

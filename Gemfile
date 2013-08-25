@@ -7,3 +7,4 @@ gem "awesome_print_motion"
 gem 'sugarcube', :require => 'sugarcube-common'
 gem 'lolcommits'
 gem 'formotion'
+#gem 'motion-support'

@@ -24,14 +24,15 @@ class QuestionScreen < PM::Screen
       case @seg.selectedSegmentIndex
       when 0
         ap "NEXT!"
-
         @label.text = @trivia.next_line
+        @label.fit_to_size(40)
       when 1
         ap "Answer!"
-        @label.text = @trivia.current_quip["answer"]
+        answer = AnswerScreen.new(nav_bar: true, answer: @trivia.current_quip["answer"])
+        answer.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal
+        open_modal answer
       end
 
-      @label.fit_to_size(40)
       #unselect
       @seg.setSelectedSegmentIndex(UISegmentedControlNoSegment)
     }

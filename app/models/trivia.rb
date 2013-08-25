@@ -2,7 +2,7 @@ class Trivia
   attr_accessor :lines, :current_quip
 
   def initialize
-    @current_quip = {}
+    @current_quip = {"answer"=>"Let's get it started!"}
     @lines = []
     @quips = self.seed_quips
   end
