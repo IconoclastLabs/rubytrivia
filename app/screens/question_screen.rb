@@ -2,19 +2,17 @@ class QuestionScreen < PM::Screen
   stylesheet :question_stylesheet
   title "Ruby Trivia"
 
-  def on_load
-    set_nav_bar_button :left, title: "Help", action: :help_tapped
-    set_nav_bar_button :right, title: "Settings", action: :settings_tapped
-    @trivia = Trivia.new
-  end
-  
   def will_appear
     @view_setup ||= set_up_view
   end
 
   def set_up_view
+    set_nav_bar_button :left, title: "Help", action: :help_tapped
+    set_nav_bar_button :right, title: "Settings", action: :settings_tapped
     set_attributes self.view, stylename: :question_view
     add @label = UILabel.new, stylename: :my_label
+    # our trivia engine
+    @trivia = Trivia.new
 
     view.on_tap do
       ap "Tapped: Show Answer"
@@ -23,7 +21,6 @@ class QuestionScreen < PM::Screen
       open_modal answer
     end
 
-    $junk = @label
     view.on_swipe :left do
       ap "Swiped: Show Next"
       new_question @label, @trivia.next_line
@@ -52,14 +49,12 @@ class QuestionScreen < PM::Screen
 
     def settings_tapped
       ap "Settings Called"
-      settings = SettingsScreen.new(nav_bar: true, trivia: @trivia)
-      open settings
+      open SettingsScreen.new(nav_bar: true, trivia: @trivia)
     end
 
     def help_tapped
       ap "Help Called"
-      modal = ModalScreen.new(nav_bar: true)
-      open_modal modal 
+      open_modal ModalScreen.new(nav_bar: true)
     end
 
 end
