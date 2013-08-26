@@ -1,4 +1,5 @@
 class ModalScreen < PM::Screen
+  stylesheet :question_stylesheet
   title "Help"
   
   def will_appear
@@ -6,11 +7,15 @@ class ModalScreen < PM::Screen
   end
   
   def set_up_view
+    set_attributes self.view, stylename: :question_view
     set_nav_bar_button :left, title: "Close", action: :close_modal_tapped
+    add swipe = UIImageView.alloc.initWithImage('swipe.png'.uiimage), stylename: :swipe_help
+    add tap = UIImageView.alloc.initWithImage('tap.png'.uiimage), stylename: :tap_help
     true
   end
-  
+
   def close_modal_tapped
-    close foo: true
+    close
   end
+  
 end

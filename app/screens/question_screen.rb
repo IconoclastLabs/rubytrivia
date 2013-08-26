@@ -30,15 +30,16 @@ class QuestionScreen < PM::Screen
 
   private
 
-    # simply slides away the current question with a fade,
-    # invisibly sets the new text and fades it in
-    # ~ thank you sugarcube!
     def new_question question_view, new_question
       start_frame = question_view.frame
       font_attrs = MotionMap::Map[NSFontAttributeName, UIFont.fontWithName( 'Courier', size: 10 )]
       question_text = NSMutableAttributedString.alloc.initWithString( new_question, attributes: nil ).tap do |attrs|
         attrs.setAttributes( font_attrs, range: 0..3)
       end
+
+      # simply slides away the current question with a fade,
+      # invisibly sets the new text and fades it in
+      # ~ thank you sugarcube!
       UIView.animation_chain do
         question_view.fade_out
         question_view.slide :left
