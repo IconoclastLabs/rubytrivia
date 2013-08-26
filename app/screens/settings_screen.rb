@@ -16,7 +16,7 @@ class SettingsScreen < PM::FormotionScreen
           rows: [
             { title: "Code by Iconoclast Labs", key: :us, type: :static},
             { title: "Questions via Github ruby-trivia", key: :questions, type: :static },
-            { title: "Background: SubtlePatterns.com", key: :credit, type: :static}
+            { title: "Background: SubtlePatterns.com", key: :credit, type: :static},
             { title: "Icon: Julien Deveaux - Noun Project", key: icon, type: :static}
           ]
       }]
