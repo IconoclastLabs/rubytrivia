@@ -43,6 +43,7 @@ GEM
     mime-types (1.24)
     mini_magick (3.6.0)
       subexec (~> 0.2.1)
+    motion-map (0.0.4)
     motion-require (0.0.7)
     multi_json (1.7.9)
     multi_xml (0.5.5)
@@ -69,5 +70,6 @@ DEPENDENCIES
   bubble-wrap
   formotion
   lolcommits
+  motion-map
   sugarcube
   teacup
