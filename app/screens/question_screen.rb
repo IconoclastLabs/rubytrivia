@@ -59,7 +59,7 @@ class QuestionScreen < PM::Screen
 
     def help_tapped
       ap "Help Called"
-      open_modal ModalScreen.new(nav_bar: true)
+      open_modal HelpScreen.new(nav_bar: true)
     end
 
 end

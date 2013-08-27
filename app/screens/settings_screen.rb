@@ -61,7 +61,7 @@ class SettingsScreen < PM::FormotionScreen
     end
     
     def modal_tapped
-      open_modal ModalScreen.new(nav_bar: true)
+      open_modal HelpScreen.new(nav_bar: true)
     end
     
     def on_return(args={})
