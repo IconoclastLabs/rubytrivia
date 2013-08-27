@@ -10,7 +10,10 @@ Teacup::Stylesheet.new :question_stylesheet do
     numberOfLines: 0,
     textAlignment: UITextAlignmentCenter,
     font: UIFont.boldSystemFontOfSize(40),
-    frame: CGRectMake(10, 10, 300, 400)
+    #frame: CGRectMake(10, 10, 300, 400)
+    width: '90%',
+    height: '90%',
+    center: ['50%', '47%']
 
   style :swipe_help,
     contentMode: UIViewContentModeScaleAspectFit,
