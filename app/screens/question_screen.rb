@@ -56,13 +56,14 @@ class QuestionScreen < PM::Screen
       # find code and fill ranges array
       current_q.scan(/`[^`]+`/).each do |code|
         ap "Need to replace #{code}"
-        start_pos = current_q.index(code, current_pos)
-        end_pos = start_pos + code.length
+        # factor in spaces!
+        start_pos = current_q.index(code, current_pos) + 1
+        end_pos = start_pos + code.length - 2
         ap "adding #{start_pos} and #{end_pos}"
         ranges.push(start_pos..end_pos)
       end
 
-      font_attrs = MotionMap::Map[NSFontAttributeName, UIFont.fontWithName( 'Courier', size: 40 )]
+      font_attrs = MotionMap::Map[NSFontAttributeName, UIFont.fontWithName( 'CourierNewPSMT', size: 40 )]
       # remove backticks, but keep the count
       question_styled = NSMutableAttributedString.alloc.initWithString( current_q.gsub("`"," "), attributes: nil ).tap do |attrs|
         ranges.each do |code_range|
