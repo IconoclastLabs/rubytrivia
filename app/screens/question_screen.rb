@@ -40,8 +40,9 @@ class QuestionScreen < PM::Screen
         question_view.fade_out
         question_view.slide :left
       end.and_then do
+        question_view.text = new_question
+        question_view.fit_to_size(40)
         question_view.attributedText = styled_question
-        #question_view.fit_to_size(40)
         question_view.frame = start_frame
       end.and_then do
         question_view.fade_in
@@ -49,13 +50,24 @@ class QuestionScreen < PM::Screen
     end
 
     def style_string question
-      question.scan(/`[^`]+`/).each do |code|
+      ranges = []
+      current_pos = 0
+      current_q = question.strip
+      # find code and fill ranges array
+      current_q.scan(/`[^`]+`/).each do |code|
         ap "Need to replace #{code}"
+        start_pos = current_q.index(code, current_pos)
+        end_pos = start_pos + code.length
+        ap "adding #{start_pos} and #{end_pos}"
+        ranges.push(start_pos..end_pos)
       end
 
-      font_attrs = MotionMap::Map[NSFontAttributeName, UIFont.fontWithName( 'Courier', size: 30 )]
-      question_styled = NSMutableAttributedString.alloc.initWithString( question, attributes: nil ).tap do |attrs|
-        attrs.setAttributes( font_attrs, range: 0..3)
+      font_attrs = MotionMap::Map[NSFontAttributeName, UIFont.fontWithName( 'Courier', size: 40 )]
+      # remove backticks, but keep the count
+      question_styled = NSMutableAttributedString.alloc.initWithString( current_q.gsub("`"," "), attributes: nil ).tap do |attrs|
+        ranges.each do |code_range|
+          attrs.setAttributes( font_attrs, range: code_range)
+        end
       end
 
       question_styled
