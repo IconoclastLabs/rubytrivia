@@ -32,11 +32,7 @@ class QuestionScreen < PM::Screen
 
     def new_question question_view, new_question
       start_frame = question_view.frame
-      font_attrs = MotionMap::Map[NSFontAttributeName, UIFont.fontWithName( 'Courier', size: 10 )]
-      question_text = NSMutableAttributedString.alloc.initWithString( new_question, attributes: nil ).tap do |attrs|
-        attrs.setAttributes( font_attrs, range: 0..3)
-      end
-
+      styled_question = style_string new_question
       # simply slides away the current question with a fade,
       # invisibly sets the new text and fades it in
       # ~ thank you sugarcube!
@@ -44,12 +40,25 @@ class QuestionScreen < PM::Screen
         question_view.fade_out
         question_view.slide :left
       end.and_then do
-        question_view.attributedText = question_text
+        question_view.attributedText = styled_question
         #question_view.fit_to_size(40)
         question_view.frame = start_frame
       end.and_then do
         question_view.fade_in
       end.start
+    end
+
+    def style_string question
+      question.scan(/`[^`]+`/).each do |code|
+        ap "Need to replace #{code}"
+      end
+
+      font_attrs = MotionMap::Map[NSFontAttributeName, UIFont.fontWithName( 'Courier', size: 30 )]
+      question_styled = NSMutableAttributedString.alloc.initWithString( question, attributes: nil ).tap do |attrs|
+        attrs.setAttributes( font_attrs, range: 0..3)
+      end
+
+      question_styled
     end
 
     def settings_tapped
