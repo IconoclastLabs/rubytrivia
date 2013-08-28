@@ -32,7 +32,6 @@ class QuestionScreen < PM::Screen
 
     def new_question question_view, new_question
       start_frame = question_view.frame
-      styled_question = style_string new_question
       # simply slides away the current question with a fade,
       # invisibly sets the new text and fades it in
       # ~ thank you sugarcube!
@@ -42,36 +41,11 @@ class QuestionScreen < PM::Screen
       end.and_then do
         question_view.text = new_question
         question_view.fit_to_size(40)
-        question_view.attributedText = styled_question
+        question_view.attributedText = new_question.dup.code_style
         question_view.frame = start_frame
       end.and_then do
         question_view.fade_in
       end.start
-    end
-
-    def style_string question
-      ranges = []
-      current_pos = 0
-      current_q = question.strip
-      # find code and fill ranges array
-      current_q.scan(/`[^`]+`/).each do |code|
-        ap "Need to replace #{code}"
-        # factor in spaces!
-        start_pos = current_q.index(code, current_pos) + 1
-        end_pos = start_pos + code.length - 2
-        ap "adding #{start_pos} and #{end_pos}"
-        ranges.push(start_pos..end_pos)
-      end
-
-      font_attrs = MotionMap::Map[NSFontAttributeName, UIFont.fontWithName( 'CourierNewPSMT', size: 40 )]
-      # remove backticks, but keep the count
-      question_styled = NSMutableAttributedString.alloc.initWithString( current_q.gsub("`"," "), attributes: nil ).tap do |attrs|
-        ranges.each do |code_range|
-          attrs.setAttributes( font_attrs, range: code_range)
-        end
-      end
-
-      question_styled
     end
 
     def settings_tapped
