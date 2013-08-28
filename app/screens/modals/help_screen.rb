@@ -1,4 +1,5 @@
 class HelpScreen < PM::Screen
+  include TriviaModal
   stylesheet :question_stylesheet
   title "Help"
   

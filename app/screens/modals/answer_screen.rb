@@ -1,4 +1,5 @@
 class AnswerScreen < PM::Screen
+  include TriviaModal
   stylesheet :question_stylesheet
   title "Answer"
 
@@ -12,15 +13,6 @@ class AnswerScreen < PM::Screen
   def set_up_view
     set_attributes self.view, stylename: :question_view
     add @label = UILabel.new, stylename: :my_label
-
-    # Close modal on tap or swipe
-    view.on_tap do
-      close
-    end
-    view.on_swipe :left do
-      close
-    end
-    
     true
   end
 
