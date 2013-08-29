@@ -8,6 +8,11 @@ class Trivia
     filter_quips
   end
 
+  def previous
+    @current_position -= 1
+    @current_quip = @lines[@current_position]
+  end
+
   def next
     # iterate, but wrap around when you hit size
     @current_position = @current_position + 1 % @lines.size

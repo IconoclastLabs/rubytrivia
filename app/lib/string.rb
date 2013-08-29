@@ -13,7 +13,7 @@ class String
         ranges.push(start_pos..end_pos)
       end
 
-      font_attrs = MotionMap::Map[NSFontAttributeName, UIFont.fontWithName( 'CourierNewPSMT', size: 40 )]
+      font_attrs = MotionMap::Map[NSFontAttributeName, UIFont.fontWithName( 'CourierNewPSMT', size: 34 )]
       # remove backticks, but keep the count
       string_styled = NSMutableAttributedString.alloc.initWithString( current_s.gsub("`"," "), attributes: nil ).tap do |attrs|
         ranges.each do |code_range|

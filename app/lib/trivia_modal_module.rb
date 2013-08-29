@@ -8,6 +8,9 @@ module TriviaModal
     view.on_swipe :left do
       close
     end
+    view.on_swipe :right do
+      close
+    end
   end
 
 end

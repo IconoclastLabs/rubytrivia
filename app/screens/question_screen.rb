@@ -23,21 +23,26 @@ class QuestionScreen < PM::Screen
 
     view.on_swipe :left do
       ap "Swiped: Show Next"
-      new_question @label, @trivia.next["question"]
+      new_question(@label, @trivia.next["question"])
+    end
+
+    view.on_swipe :right do
+      ap "Swiped: Show Previous"
+      new_question(@label, @trivia.previous["question"], :right)
     end
     true
   end
 
   private
 
-    def new_question question_view, new_question
+    def new_question (question_view, new_question, swipe_direction = :left)
       start_frame = question_view.frame
       # simply slides away the current question with a fade,
       # invisibly sets the new text and fades it in
       # ~ thank you sugarcube!
       UIView.animation_chain do
         question_view.fade_out
-        question_view.slide :left
+        question_view.slide swipe_direction
       end.and_then do
         question_view.text = new_question
         question_view.fit_to_size(40)
