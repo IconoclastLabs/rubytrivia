@@ -7,11 +7,9 @@ class String
       current_s = self.strip
       # find code and fill ranges array
       current_s.scan(/`[^`]+`/).each do |code|
-        ap "Need to replace #{code}"
         # factor in spaces!
         start_pos = current_s.index(code, current_pos) + 1
         end_pos = start_pos + code.length - 2
-        ap "adding #{start_pos} and #{end_pos}"
         ranges.push(start_pos..end_pos)
       end
 

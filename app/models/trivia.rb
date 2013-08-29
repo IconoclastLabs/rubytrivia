@@ -1,16 +1,17 @@
 class Trivia
-  attr_accessor :lines, :current_quip
+  attr_accessor :current_quip
 
   def initialize
     @current_quip = {"answer"=>"Let's get it started!"}
-    @lines = []
     @quips = self.seed_quips
+    @current_position = 0
+    filter_quips
   end
 
-  def next_line
-    self.filter_quips if @lines.size < 1
-    @current_quip = @lines.pop
-    @current_quip["question"]
+  def next
+    # iterate, but wrap around when you hit size
+    @current_position = @current_position + 1 % @lines.size
+    @current_quip = @lines[@current_position]
   end
 
   def filter_quips

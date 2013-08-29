@@ -23,7 +23,7 @@ class QuestionScreen < PM::Screen
 
     view.on_swipe :left do
       ap "Swiped: Show Next"
-      new_question @label, @trivia.next_line
+      new_question @label, @trivia.next["question"]
     end
     true
   end
