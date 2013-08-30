@@ -44,9 +44,7 @@ class QuestionScreen < PM::Screen
         question_view.fade_out
         question_view.slide swipe_direction
       end.and_then do
-        question_view.text = new_question
-        question_view.fit_to_size(40)
-        question_view.attributedText = new_question.dup.code_style
+        question_view.code_style(new_question)
         question_view.frame = start_frame
       end.and_then do
         question_view.fade_in

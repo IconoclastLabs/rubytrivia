@@ -5,9 +5,7 @@ class AnswerScreen < PM::Screen
 
   def answer=(answer_text)
     @view_is_set_up ||= set_up_view
-    @label.text = answer_text # take up some space
-    @label.fit_to_size(40) # resize as needed
-    @label.attributedText = answer_text.dup.code_style # do font madness
+    @label.code_style(answer_text)
   end
 
   def set_up_view
