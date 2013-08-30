@@ -14,7 +14,7 @@ class UILabel
           # Non-code elements just get added
           current_s += text_slice
         else
-          # remove backticks
+          # remove backticks and save position while adding
           code = text_slice.gsub("`", "")
           start_pos = current_s.length
           end_pos = start_pos + code.length - 1
@@ -24,7 +24,6 @@ class UILabel
       end
 
       font_attrs = MotionMap::Map[NSFontAttributeName, UIFont.fontWithName( 'CourierNewPSMT', size: (self.font.pointSize - 2) )]
-      # remove backticks, but keep the count
       string_styled = NSMutableAttributedString.alloc.initWithString( current_s, attributes: nil ).tap do |attrs|
         ranges.each do |code_range|
           attrs.setAttributes( font_attrs, range: code_range)

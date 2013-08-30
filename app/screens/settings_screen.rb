@@ -14,10 +14,10 @@ class SettingsScreen < PM::FormotionScreen
       },{ 
         title: "Credits",
           rows: [
-            { title: "Code by Iconoclast Labs", key: :us, type: :static},
-            { title: "Questions via Github ruby-trivia", key: :questions, type: :static },
-            { title: "Background: SubtlePatterns.com", key: :credit, type: :static},
-            { title: "Icon: Julien Deveaux - Noun Project", key: :icon, type: :static}
+            { title: "Code: Iconoclast Labs", key: :us, type: :static},
+            { title: "Questions: Github ruby-trivia", key: :questions, type: :static },
+            { title: "Background: SubtlePatterns", key: :credit, type: :static},
+            { title: "Icon: Julien Deveaux", key: :icon, type: :static}
           ]
       }]
     }
@@ -45,9 +45,10 @@ class SettingsScreen < PM::FormotionScreen
           key: clean_symbol(category),
           type: :switch,
           value: true
-        } if all_categories.size < 7
+        }
       end
-      all_categories
+      p all_categories
+      all_categories.take(7)
     end
 
     def clean_symbol string
@@ -59,11 +60,7 @@ class SettingsScreen < PM::FormotionScreen
       mailto_link = "mailto:developers@iconoclastlabs.com".nsurl
       UIApplication.sharedApplication.openURL(mailto_link)
     end
-    
-    def modal_tapped
-      open_modal HelpScreen.new(nav_bar: true)
-    end
-    
+       
     def on_return(args={})
       PM.logger.info args
     end
