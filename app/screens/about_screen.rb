@@ -1,5 +1,5 @@
 class AboutScreen < PM::GroupedTableScreen
-  stylesheet :question_stylesheet
+  stylesheet :trivia_stylesheet
   title "About"
 
   def table_data
@@ -16,7 +16,8 @@ class AboutScreen < PM::GroupedTableScreen
         title: "Graphics",
         cells: [
           { title: "Background: SubtlePatterns.com"},
-          { title: "Icon: Julien Deveaux NounProject"}
+          { title: "Icon Julien Deveaux : NounProject"},
+          { title: "Formatting with Teacup"}
         ]
       },{
         title: "Questions",
@@ -31,7 +32,7 @@ class AboutScreen < PM::GroupedTableScreen
   def on_load
     # clear out the normal striped background
     self.view.backgroundView = nil 
-    set_attributes self.view, stylename: :question_view
+    set_attributes self.view, stylename: :trivia_view
   end
 
   private

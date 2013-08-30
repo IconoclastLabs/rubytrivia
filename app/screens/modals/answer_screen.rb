@@ -1,6 +1,6 @@
 class AnswerScreen < PM::Screen
   include TriviaModal
-  stylesheet :question_stylesheet
+  stylesheet :trivia_stylesheet
   title "Answer"
 
   def answer=(answer_text)
@@ -9,7 +9,7 @@ class AnswerScreen < PM::Screen
   end
 
   def set_up_view
-    set_attributes self.view, stylename: :question_view
+    set_attributes self.view, stylename: :trivia_view
     add @label = UILabel.new, stylename: :my_label
     true
   end

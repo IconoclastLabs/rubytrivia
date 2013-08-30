@@ -1,6 +1,5 @@
-Teacup::Stylesheet.new :question_stylesheet do
-  style :question_view,
-    backgroundColor: 'retina_wood'.uicolor
+Teacup::Stylesheet.new :trivia_stylesheet do
+  import :base_stylesheet
 
   style :my_label,
     backgroundColor: UIColor.clearColor,

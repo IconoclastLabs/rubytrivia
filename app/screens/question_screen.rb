@@ -1,5 +1,5 @@
 class QuestionScreen < PM::Screen
-  stylesheet :question_stylesheet
+  stylesheet :trivia_stylesheet
   title "Ruby Trivia"
 
   def will_appear
@@ -9,7 +9,7 @@ class QuestionScreen < PM::Screen
   def set_up_view
     set_nav_bar_button :left, title: "Help", action: :help_tapped
     set_nav_bar_button :right, title: "About", action: :about_tapped
-    set_attributes self.view, stylename: :question_view
+    set_attributes self.view, stylename: :trivia_view
     add @label = UILabel.new, stylename: :my_label
     # our trivia engine
     @trivia = Trivia.new

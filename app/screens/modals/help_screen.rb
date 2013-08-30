@@ -1,6 +1,6 @@
 class HelpScreen < PM::Screen
   include TriviaModal
-  stylesheet :question_stylesheet
+  stylesheet :trivia_stylesheet
   title "Help"
   
   def will_appear
@@ -8,7 +8,7 @@ class HelpScreen < PM::Screen
   end
   
   def set_up_view
-    set_attributes self.view, stylename: :question_view
+    set_attributes self.view, stylename: :trivia_view
     set_nav_bar_button :left, title: "Close", action: :close_modal_tapped
     add UIImageView.alloc.initWithImage('swipe.png'.uiimage), stylename: :swipe_help
     add UIImageView.alloc.initWithImage('tap.png'.uiimage), stylename: :tap_help
