@@ -2,7 +2,7 @@ class Trivia
   attr_accessor :current_quip
 
   def initialize
-    @current_quip = {"answer"=>"Let's get it started!"}
+    @current_quip = {"answer"=>"Begin swiping to get started!"}
     @quips = self.seed_quips
     @current_position = 0
     filter_quips

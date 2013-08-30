@@ -8,7 +8,7 @@ class QuestionScreen < PM::Screen
 
   def set_up_view
     set_nav_bar_button :left, title: "Help", action: :help_tapped
-    set_nav_bar_button :right, title: "Settings", action: :settings_tapped
+    set_nav_bar_button :right, title: "About", action: :about_tapped
     set_attributes self.view, stylename: :question_view
     add @label = UILabel.new, stylename: :my_label
     # our trivia engine
@@ -51,9 +51,9 @@ class QuestionScreen < PM::Screen
       end.start
     end
 
-    def settings_tapped
-      ap "Settings Called"
-      open SettingsScreen.new(nav_bar: true, trivia: @trivia)
+    def about_tapped
+      ap "About Called"
+      open AboutScreen.new(nav_bar: true)
     end
 
     def help_tapped
