@@ -1,6 +1,5 @@
 class AboutScreen < PM::GroupedTableScreen
   stylesheet :question_stylesheet
-
   title "About"
 
   def table_data
@@ -8,7 +7,7 @@ class AboutScreen < PM::GroupedTableScreen
       {
         title: "Code",
         cells: [
-          { title: "Written by Iconoclast Labs", action: :contact_us},
+          { title: "Written by Iconoclast Labs", action: :email_us},
           { title: "Code framework ProMotion"},
           { title: "Language RubyMotion"},
           { title: "View app code on Github"}
