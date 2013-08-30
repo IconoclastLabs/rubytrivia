@@ -10,11 +10,10 @@ class HelpScreen < PM::Screen
   def set_up_view
     set_attributes self.view, stylename: :question_view
     set_nav_bar_button :left, title: "Close", action: :close_modal_tapped
-    add swipe = UIImageView.alloc.initWithImage('swipe.png'.uiimage), stylename: :swipe_help
-    add tap = UIImageView.alloc.initWithImage('tap.png'.uiimage), stylename: :tap_help
-    view.on_tap do
-      close_modal_tapped
-    end
+    add UIImageView.alloc.initWithImage('swipe.png'.uiimage), stylename: :swipe_help
+    add UIImageView.alloc.initWithImage('tap.png'.uiimage), stylename: :tap_help
+    add UIImageView.alloc.initWithImage('previous.png'.uiimage), stylename: :previous_help
+    add labs = UIImageView.alloc.initWithImage('footer.png'.uiimage), stylename: :footer_help
 
     true
   end

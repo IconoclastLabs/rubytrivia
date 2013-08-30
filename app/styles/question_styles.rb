@@ -17,11 +17,21 @@ Teacup::Stylesheet.new :question_stylesheet do
   style :swipe_help,
     contentMode: UIViewContentModeScaleAspectFit,
     width: '90%',
-    center: ['50%','10%']
+    center: ['50%','15%']
 
   style :tap_help,
     contentMode: UIViewContentModeScaleAspectFit,
     width: '90%',
-    center: ['50%', '30%']
+    center: ['50%', '40%']
+
+  style :previous_help,
+    contentMode: UIViewContentModeScaleAspectFit,
+    width: '90%',
+    center: ['50%', '65%']
+
+  style :footer_help,
+    contentMode: UIViewContentModeScaleAspectFit,
+    width: '100%',
+    center: ['50%','90%']      
 
 end
