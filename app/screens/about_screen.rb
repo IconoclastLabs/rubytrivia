@@ -1,5 +1,6 @@
 class AboutScreen < PM::GroupedTableScreen
   stylesheet :trivia_stylesheet
+  attr_accessor :trivia
   title "About"
 
   def table_data
@@ -22,7 +23,8 @@ class AboutScreen < PM::GroupedTableScreen
       },{
         title: "Questions",
         cells: [
-          { title: "Github gregstallings/ruby-trivia"}
+          { title: "Github gregstallings/ruby-trivia"},
+          { title: "Configure Questions", action: :settings_modal}
         ]
       }
     ]
@@ -31,19 +33,19 @@ class AboutScreen < PM::GroupedTableScreen
 
   def on_load
     # clear out the normal striped background
+    $junk = self
     self.view.backgroundView = nil 
     set_attributes self.view, stylename: :trivia_view
   end
 
-  private
+  def email_us
+    mailto_link = "mailto:developers@iconoclastlabs.com".nsurl
+    UIApplication.sharedApplication.openURL(mailto_link)
+  end
 
-    def email_us
-      mailto_link = "mailto:developers@iconoclastlabs.com".nsurl
-      UIApplication.sharedApplication.openURL(mailto_link)
-    end
+  def settings_modal
+    ap "Show Settings"
+    open_modal SettingsScreen.new(nav_bar: true, trivia: @trivia)
+  end
        
-    def on_return(args={})
-      PM.logger.info args
-    end
-  
 end

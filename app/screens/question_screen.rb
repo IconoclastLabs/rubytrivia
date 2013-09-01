@@ -53,7 +53,7 @@ class QuestionScreen < PM::Screen
 
     def about_tapped
       ap "About Called"
-      open AboutScreen.new(nav_bar: true)
+      open AboutScreen.new(nav_bar: true, trivia: @trivia)
     end
 
     def help_tapped
