@@ -31,9 +31,8 @@ class AboutScreen < PM::GroupedTableScreen
 
   end
 
-  def on_load
-    # clear out the normal striped background
-    self.view.backgroundView = nil 
+  def will_appear
+    view.backgroundView = nil
     set_attributes self.view, stylename: :trivia_view
   end
 
