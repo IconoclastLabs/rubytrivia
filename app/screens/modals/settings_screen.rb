@@ -28,12 +28,16 @@ class SettingsScreen < PM::FormotionScreen
     # clear out the normal striped background
     self.view.backgroundView = nil 
     set_attributes self.view, stylename: :trivia_view
-  
+
     # https://github.com/clayallsopp/formotion/blob/master/lib/formotion/form/form.rb#L25
     # This should go away as soon as this pull request is bubbled up to RubyGems.org
     # https://github.com/clayallsopp/formotion/commit/344fb73e6b5a64f3dabffba1d78791e9674b0244
     self.form.open
     self.form.init_observer_for_save
+  end
+
+  def will_disappear
+    @trivia.filter_quips
   end
 
   private
@@ -43,7 +47,7 @@ class SettingsScreen < PM::FormotionScreen
       @trivia.categories.each do |category|
         all_categories << {
           title: category,
-          key: clean_symbol(category),
+          key: @trivia.clean_symbol(category),
           type: :switch,
           value: true
         }
@@ -51,13 +55,10 @@ class SettingsScreen < PM::FormotionScreen
       all_categories
     end
 
-    def clean_symbol string
-      #only word characters, lowercased
-      string.gsub(/\W+/, "").downcase.to_sym
-    end
-
     def close_modal_tapped
       close
     end
+
+
   
 end

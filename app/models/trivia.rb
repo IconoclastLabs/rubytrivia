@@ -9,8 +9,8 @@ class Trivia
   end
 
   def previous
-    @current_position -= 1
-    @current_quip = @lines[@current_position]
+    @current_position = @current_position - 1 % @lines.size
+    @current_quip = @lines[@current_position.abs]
   end
 
   def next
@@ -22,14 +22,20 @@ class Trivia
   def filter_quips
     # Populate lines from live categories
     @lines = [] #make sure it's empty
+    cat_settings = App::Persistence["FORMOTION_settings"]
 
+    # If settings have been modified, use those; otherwise just add all questions
     categories.each do |cat|
-      @lines += @quips[cat]
+      if cat_settings
+        @lines += @quips[cat] if cat_settings[clean_symbol(cat)]
+      else
+        @lines += @quips[cat]
+      end
     end
 
     @lines.shuffle!
-    @lines.push({"answer"=>"Click on Settings!.", "question"=>"No Categories Selected"}) if @lines.empty?
-    ap "Filtered Lines!"
+    @lines.push({"answer"=>"Click on About -> Settings!", "question"=>"No Categories Selected"}) if @lines.empty?
+    ap "Filtered Lines! Count = #{@lines.size}"
   end
 
   def seed_quips
@@ -41,6 +47,11 @@ class Trivia
 
   def categories
     @quips.keys.sort
+  end
+
+  def clean_symbol string
+    #only word characters, lowercased
+    string.gsub(/\W+/, "").downcase.to_sym
   end
 
 end
