@@ -44,6 +44,7 @@ GEM
     mini_magick (3.6.0)
       subexec (~> 0.2.1)
     motion-map (0.0.4)
+    motion-redgreen (0.1.0)
     motion-require (0.0.7)
     multi_json (1.7.9)
     multi_xml (0.5.5)
@@ -71,5 +72,6 @@ DEPENDENCIES
   formotion
   lolcommits
   motion-map
+  motion-redgreen
   sugarcube
   teacup
