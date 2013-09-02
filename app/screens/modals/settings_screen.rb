@@ -1,4 +1,5 @@
 class SettingsScreen < PM::FormotionScreen
+  stylesheet :trivia_stylesheet
   attr_accessor :trivia
   title "Settings"
 
@@ -24,6 +25,10 @@ class SettingsScreen < PM::FormotionScreen
   end
 
   def on_load
+    # clear out the normal striped background
+    self.view.backgroundView = nil 
+    set_attributes self.view, stylename: :trivia_view
+  
     # https://github.com/clayallsopp/formotion/blob/master/lib/formotion/form/form.rb#L25
     # This should go away as soon as this pull request is bubbled up to RubyGems.org
     # https://github.com/clayallsopp/formotion/commit/344fb73e6b5a64f3dabffba1d78791e9674b0244

@@ -9,21 +9,21 @@ class AboutScreen < PM::GroupedTableScreen
         title: "Code",
         cells: [
           { title: "Written by Iconoclast Labs", action: :email_us},
-          { title: "Code framework ProMotion"},
-          { title: "Language RubyMotion"},
-          { title: "View app code on Github"}
+          { title: "Code framework ProMotion", action: :view_page, arguments: { site: "http://clearsightstudio.github.io/ProMotion/"}},
+          { title: "Language RubyMotion", action: :view_page, arguments: { site: "http://www.rubymotion.com/"}},
+          { title: "View app code on Github", action: :view_page, arguments: { site: "https://github.com/GantMan/rubytrivia"}}
         ]
       },{
         title: "Graphics",
         cells: [
-          { title: "Background: SubtlePatterns.com"},
-          { title: "Icon Julien Deveaux : NounProject"},
-          { title: "Formatting with Teacup"}
+          { title: "Background: SubtlePatterns.com", action: :view_page, arguments: { site: "http://subtlepatterns.com/retina-wood/"}},
+          { title: "Icon Julien Deveaux : NounProject", action: :view_page, arguments: { site: "http://thenounproject.com/noun/ruby/#icon-No15720"}},
+          { title: "Formatting with Teacup", action: :view_page, arguments: { site: "https://github.com/rubymotion/teacup"}}
         ]
       },{
         title: "Questions",
         cells: [
-          { title: "Github gregstallings/ruby-trivia"},
+          { title: "Github gregstallings/ruby-trivia", action: :view_page, arguments: { site: "https://github.com/gregstallings/ruby-trivia"}},
           { title: "Configure Questions", action: :settings_modal}
         ]
       }
@@ -33,7 +33,6 @@ class AboutScreen < PM::GroupedTableScreen
 
   def on_load
     # clear out the normal striped background
-    $junk = self
     self.view.backgroundView = nil 
     set_attributes self.view, stylename: :trivia_view
   end
@@ -41,6 +40,10 @@ class AboutScreen < PM::GroupedTableScreen
   def email_us
     mailto_link = "mailto:developers@iconoclastlabs.com".nsurl
     UIApplication.sharedApplication.openURL(mailto_link)
+  end
+
+  def view_page(args={})
+    args[:site].nsurl.open
   end
 
   def settings_modal
