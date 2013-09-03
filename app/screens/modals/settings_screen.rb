@@ -27,14 +27,6 @@ class SettingsScreen < PM::FormotionScreen
     }
   end
 
-  def on_load
-    # https://github.com/clayallsopp/formotion/blob/master/lib/formotion/form/form.rb#L25
-    # This should go away as soon as this pull request is bubbled up to RubyGems.org
-    # https://github.com/clayallsopp/formotion/commit/344fb73e6b5a64f3dabffba1d78791e9674b0244
-    self.form.open
-    self.form.init_observer_for_save
-  end
-
   def will_disappear
     @trivia.filter_quips
   end

@@ -11,7 +11,7 @@ GEM
     choice (0.1.6)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
-    formotion (1.4.0)
+    formotion (1.5.0)
       bubble-wrap (~> 1.3.0)
       motion-require (~> 0.0.3)
     git (1.2.6)
