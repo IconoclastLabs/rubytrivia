@@ -8,16 +8,21 @@ describe "AnswerScreen" do
     @screen.on_load
   end
 
-  it "should store title" do
+  it "stores the title" do
     AnswerScreen.get_title.should == 'Answer'
   end
 
-  it "should set title when instantiated" do
+  it "sets title when instantiated" do
     @screen.title.should == 'Answer'
   end
 
-  it "should have a nav bar" do
+  it "has a nav bar" do
     @screen.nav_bar?.should == true
   end
+
+  it "has theme styles" do
+    Teacup::Stylesheet[:trivia_stylesheet].should.not == nil
+    Teacup::Stylesheet[:base_stylesheet].should.not == nil
+  end  
 
 end
