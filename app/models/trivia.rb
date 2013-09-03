@@ -3,9 +3,11 @@ class Trivia
 
   def initialize
     @current_quip = {"answer"=>"Begin swiping to get started!"}
-    @quips = self.seed_quips
+    App::Persistence['trivia'] ||= self.seed_quips
+    @quips = App::Persistence['trivia'].dup
     @current_position = 0
     filter_quips
+    perform_update
   end
 
   def previous
@@ -47,6 +49,19 @@ class Trivia
 
   def categories
     @quips.keys.sort
+  end
+
+  def perform_update
+    ap "downloading update"
+    BW::HTTP.get("https://raw.github.com/GantMan/rubytrivia/master/resources/qa.json") do |response|
+      if response.ok?
+        ap "Download complete and ok. Now setting it to the new file"
+        App::Persistence['trivia'] = BW::JSON.parse(response.body.to_str)
+      else
+        ap "Download Failed: #{response.error_message}"
+      end
+    end
+
   end
 
   def clean_symbol string
