@@ -53,7 +53,7 @@ class Trivia
 
   def perform_update
     ap "downloading update"
-    BW::HTTP.get("https://raw.github.com/GantMan/rubytrivia/master/resources/qa.json") do |response|
+    BW::HTTP.get("https://raw.github.com/IconoclastLabs/rubytrivia/master/resources/qa.json") do |response|
       if response.ok?
         ap "Download complete and ok. Now setting it to the new file"
         App::Persistence['trivia'] = BW::JSON.parse(response.body.to_str)

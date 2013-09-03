@@ -1,6 +1,6 @@
 RubyTrivia
 ==========
-[![Build Status](https://travis-ci.org/GantMan/rubytrivia.png?branch=master)](https://travis-ci.org/GantMan/rubytrivia)
+[![Build Status](https://travis-ci.org/IconoclastLabs/rubytrivia.png?branch=master)](https://travis-ci.org/IconoclastLabs/rubytrivia)
 
 Simple ProMotion app, based off of [gregstallings ruby-trivia](https://github.com/gregstallings/ruby-trivia)
 
