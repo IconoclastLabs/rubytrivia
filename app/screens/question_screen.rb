@@ -4,6 +4,9 @@ class QuestionScreen < PM::Screen
 
   def will_appear
     @view_setup ||= set_up_view
+    # just in-case orientation changed while away
+    self.view.restyle!
+    @label.code_style(@trivia.current_quip["question"])
   end
 
   def set_up_view

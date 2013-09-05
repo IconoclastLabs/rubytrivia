@@ -32,7 +32,7 @@ class AboutScreen < PM::GroupedTableScreen
   end
 
   def will_appear
-    view.backgroundView = nil
+    #view.backgroundView = nil # WAS NEEDED FOR iOS6
     set_attributes self.view, stylename: :trivia_view
   end
 

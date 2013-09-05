@@ -3,7 +3,6 @@ Teacup::Stylesheet.new :trivia_stylesheet do
 
   style :my_label,
     backgroundColor: UIColor.clearColor,
-    text: "Welcome to Ruby Trivia!",
     numberOfLines: 0,
     textAlignment: UITextAlignmentCenter,
     font: UIFont.boldSystemFontOfSize(40),
