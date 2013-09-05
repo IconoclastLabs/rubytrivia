@@ -4,33 +4,55 @@ Teacup::Stylesheet.new :trivia_stylesheet do
   style :my_label,
     backgroundColor: UIColor.clearColor,
     text: "Welcome to Ruby Trivia!",
-    #textColor: UIColor.whiteColor,
-    #shadowColor: UIColor.blackColor,
     numberOfLines: 0,
     textAlignment: UITextAlignmentCenter,
     font: UIFont.boldSystemFontOfSize(40),
-    width: '90%',
-    height: '90%',
-    center: ['50%', '47%']
+    portrait: {
+      width: '90%',
+      height: '85%',
+      center: ['50%', '55%']
+    },
+    landscape: {
+      width: '90%',
+      height: '85%',
+      center: ['50%', '55%']
+    }
 
-  style :swipe_help,
-    contentMode: UIViewContentModeScaleAspectFit,
-    width: '90%',
-    center: ['50%','15%']
 
-  style :tap_help,
-    contentMode: UIViewContentModeScaleAspectFit,
-    width: '90%',
-    center: ['50%', '40%']
+############## Help Screen ################
+  style :swipe_help, extends: :help_image,
+    portrait: {
+      center: ['50%','25%']
+    },
+    landscape: {
+      center: ['25%','30%']
+    }
 
-  style :previous_help,
-    contentMode: UIViewContentModeScaleAspectFit,
-    width: '90%',
-    center: ['50%', '65%']
+  style :tap_help, extends: :help_image,
+    portrait: {
+      center: ['50%','47%']
+    },
+    landscape: {
+      center: ['50%','55%']
+    }
+
+  style :previous_help, extends: :help_image,
+    portrait: {
+      center: ['50%','70%']
+    },
+    landscape: {
+      center: ['75%','80%']
+    }
 
   style :footer_help,
     contentMode: UIViewContentModeScaleAspectFit,
-    width: '100%',
-    center: ['50%','90%']      
+    portrait: {
+      width: '100%',
+      hidden: false,
+      center: ['50%','92%']
+    },
+    landscape: {
+      hidden: true
+    }
 
 end

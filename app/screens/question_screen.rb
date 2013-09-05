@@ -16,9 +16,10 @@ class QuestionScreen < PM::Screen
 
     view.on_tap do
       ap "Tapped: Show Answer"
-      answer = AnswerScreen.new(nav_bar: true, answer: @trivia.current_quip["answer"])
-      answer.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal
-      open_modal answer
+      open_modal AnswerScreen.new(nav_bar: true,
+        transition_style: UIModalTransitionStyleFlipHorizontal,
+        presentation_style: UIModalPresentationFormSheet,
+        answer: @trivia.current_quip["answer"])
     end
 
     view.on_swipe :left do

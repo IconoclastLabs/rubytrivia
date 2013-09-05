@@ -28,5 +28,5 @@ Motion::Project::App.setup do |app|
   end
   app.frameworks += props.frameworks
   app.prerendered_icon = props.prerendered_icon
-  app.interface_orientations = [:portrait]
+  app.interface_orientations = [:portrait, :landscape_left, :landscape_right]
 end

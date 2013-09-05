@@ -6,6 +6,7 @@ class AnswerScreen < PM::Screen
   def answer=(answer_text)
     @view_is_set_up ||= set_up_view
     @label.code_style(answer_text)
+    ap "Answer Setup = #{answer_text}"
   end
 
   def set_up_view
