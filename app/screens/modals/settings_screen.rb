@@ -10,7 +10,7 @@ class SettingsScreen < PM::FormotionScreen
   def set_up_view
     set_attributes self.view, stylename: :trivia_view
     set_nav_bar_button :left, title: "Close", action: :close_modal_tapped
-    # clear out the normal striped background
+    # clear out the normal striped background for iOS6
     self.view.backgroundView = nil 
     set_attributes self.view, stylename: :trivia_view
     true
@@ -48,6 +48,8 @@ class SettingsScreen < PM::FormotionScreen
 
     def close_modal_tapped
       close
+      # Needed for iOS7 to repaint cells as of 9/6/13
+      self.parent_screen.update_table_data
     end
 
 

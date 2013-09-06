@@ -32,7 +32,7 @@ class AboutScreen < PM::GroupedTableScreen
   end
 
   def will_appear
-    #view.backgroundView = nil # WAS NEEDED FOR iOS6
+    view.backgroundView = nil # WAS NEEDED FOR iOS6
     set_attributes self.view, stylename: :trivia_view
   end
 
@@ -49,5 +49,6 @@ class AboutScreen < PM::GroupedTableScreen
     ap "Show Settings"
     open_modal SettingsScreen.new(nav_bar: true, trivia: @trivia)
   end
-       
+
+
 end
