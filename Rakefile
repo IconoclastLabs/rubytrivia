@@ -29,4 +29,6 @@ Motion::Project::App.setup do |app|
   app.frameworks += props.frameworks
   app.prerendered_icon = props.prerendered_icon
   app.interface_orientations = [:portrait, :landscape_left, :landscape_right]
+
+  app.redgreen_style = :full # default: :focused
 end

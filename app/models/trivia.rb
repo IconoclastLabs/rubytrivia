@@ -1,5 +1,5 @@
 class Trivia
-  attr_accessor :current_quip
+  attr_reader :current_quip
 
   def initialize
     @current_quip = {"answer"=>"Begin swiping to get started!", "question"=>"Welcome to Ruby Trivia!"}
