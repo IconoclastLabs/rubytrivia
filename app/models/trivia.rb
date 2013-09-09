@@ -59,6 +59,7 @@ class Trivia
         App::Persistence['trivia'] = BW::JSON.parse(response.body.to_str)
       else
         ap "Download Failed: #{response.error_message}"
+        false
       end
     end
 
