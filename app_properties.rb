@@ -1,6 +1,6 @@
 class AppProperties
   VERSION = '1'
-  SKU_NAME = 'ruby_trivia' #default
+  SKU_NAME = 'rubytrivia' #default
   COMPANY_NAME = 'com.iconoclastlabs.'
   
   def name
