@@ -48,8 +48,6 @@ class SettingsScreen < PM::FormotionScreen
 
     def close_modal_tapped
       close
-      # Needed for iOS7 to repaint cells as of 9/6/13
-      self.parent_screen.update_table_data
     end
 
 
