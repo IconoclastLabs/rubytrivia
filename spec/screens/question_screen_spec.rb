@@ -1,11 +1,9 @@
 describe "QuestionScreen" do
   tests QuestionScreen
 
-  before do
-    # Simulate AppDelegate setup of main screen
-    @screen = QuestionScreen.new nav_bar: true
-    @screen.will_appear
-  end
+  # Simulate AppDelegate setup of main screen
+  @screen = QuestionScreen.new nav_bar: true
+  @screen.will_appear
 
   it "stores title" do
     QuestionScreen.get_title.should == 'Ruby Trivia'

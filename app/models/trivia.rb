@@ -1,5 +1,5 @@
 class Trivia
-  attr_accessor :current_quip
+  attr_reader :current_quip
 
   def initialize
     @current_quip = {"answer"=>"Begin swiping to get started!", "question"=>"Welcome to Ruby Trivia!"}
@@ -59,6 +59,7 @@ class Trivia
         App::Persistence['trivia'] = BW::JSON.parse(response.body.to_str)
       else
         ap "Download Failed: #{response.error_message}"
+        false
       end
     end
 
