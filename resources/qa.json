@@ -799,8 +799,12 @@
   ],
   "The Ruby Environment and the Interpreter": [
     {
-      "question": "What is the difference between `#puts` and `#prints`?  ",
+      "question": "What is the difference between `#puts` and `#print`?  ",
       "answer": "`#puts` appends a newline to the output."
+    },
+    {
+      "question": "Which Ruby interpreter option allows running of one-line scripts?",
+      "answer": "`-e`"
     },
     {
       "question": "Where do the curly brackets to define a hash literal `{}` exist in the object model?  ",
