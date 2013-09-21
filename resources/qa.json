@@ -52,7 +52,7 @@
     },
     {
       "question": "What method might you use to enumerate over a string?  ",
-      "answer": "`#each_char`"
+      "answer": "`String#each_char`"
     },
     {
       "question": "What is the difference between a character literal such as `?A` and a string literal such as `'A'`?  ",
@@ -91,12 +91,12 @@
       "answer": "With `%W` it is possible to define an array containing string interpolation."
     },
     {
-      "question": "Name at least one synonym for `#key?`?  ",
-      "answer": "`#has_key?`, `#include?`, `#member?`"
+      "question": "Name at least one synonym for `Hash#key?`?  ",
+      "answer": "`Hash#has_key?`, `Hash#include?`, `Hash#member?`"
     },
     {
       "question": "How might you specify a default value for a hash?  ",
-      "answer": "Pass the default values as an argument to `#new` on initialization or change the default directly with the setter method `Hash#default`. You may also provide a default at time of query using `#fetch`."
+      "answer": "Pass the default values as arguments to `::new` on initialization or change the default directly with the setter method `Hash#default`. You may also provide a default at time of query using `Hash#fetch`."
     },
     {
       "question": "Does `Hash` use `#==` or `#eql?` to compare hash keys?  ",
@@ -210,7 +210,7 @@
   "Blocks and Iterators": [
     {
       "question": "Name at least two classes which include the `Enumerable` module.  ",
-      "answer": "`Array`, `Hash`, `Set`, `Range`, `IO`..."
+      "answer": "`Array`, `Hash`, `Range`, `IO`..."
     },
     {
       "question": "When might you use the `do`/`end` syntax versus using the curly bracket syntax for a block?  ",
@@ -226,7 +226,7 @@
     },
     {
       "question": "What is the synonym of `#include?`?  ",
-      "answer": "`#member?`"
+      "answer": "`Enumerable#member?`"
     },
     {
       "question": "Can a collection be modified while it is being iterated upon?  ",
@@ -237,24 +237,24 @@
       "answer": "No. A block is a syntactic structure of the interpreter. A block can be converted to a Proc object."
     },
     {
-      "question": "What is the synonym of `#collect`?  ",
-      "answer": "`#map`"
+      "question": "What is the synonym of `Enumberable#collect`?  ",
+      "answer": "`Enumberable#map`"
     },
     {
-      "question": "What is the synonym of `#find`?  ",
-      "answer": "`#detect`"
+      "question": "What is the synonym of `Enumberable#find`?  ",
+      "answer": "`Enumberable#detect`"
     },
     {
-      "question": "What is the synonym of `#select`?  ",
-      "answer": "`#find_all`"
+      "question": "What is the synonym of `Enumberable#select`?  ",
+      "answer": "`Enumberable#find_all`"
     },
     {
-      "question": "What is the opposite of `#select`?  ",
-      "answer": "`#reject`"
+      "question": "What is the opposite of `Enumberable#select`?  ",
+      "answer": "`Enumberable#reject`"
     },
     {
-      "question": "What is the synonym of `#inject`?  ",
-      "answer": "`#reduce`"
+      "question": "What is the synonym of `Enumberable#inject`?  ",
+      "answer": "`Enumberable#reduce`"
     },
     {
       "question": "Why might you use `#each` instead of `for/in`?  ",
@@ -280,7 +280,7 @@
     },
     {
       "question": "How might you test the presence of a method?  ",
-      "answer": "`#respond_to?` or `#method?`"
+      "answer": "`Object#respond_to?` or `Module#method_defined?`"
     },
     {
       "question": "What is the meaning of `self`?  ",
@@ -288,7 +288,7 @@
     },
     {
       "question": "What does a bang `!` at the end of a method signify?  ",
-      "answer": "That it should be used cautiously. Methods with this naming convention typically perform a mutation on the receiver object."
+      "answer": "That it should be used with caution. Methods with this naming convention typically perform a mutation on the receiver object."
     },
     {
       "question": "What is a mutator method?  ",
@@ -296,7 +296,7 @@
     },
     {
       "question": "Is a method an object?  ",
-      "answer": "No, however, a `Method` object is, of course, an object."
+      "answer": "No, however, a `Method` object is of course, an object."
     },
     {
       "question": "What is a predicate in the context of Ruby method naming conventions?  ",
@@ -316,7 +316,7 @@
     },
     {
       "question": "How might you send a message to a private method of a receiver object from outside the scope of the receiver object?  ",
-      "answer": "`#send`"
+      "answer": "`Object#send`"
     },
     {
       "question": "How would you typically prevent future modifications to an object?  ",
@@ -458,7 +458,7 @@
     },
     {
       "question": "Why must a class name begin with a capital letter?  ",
-      "answer": "Because the class keyword creates a new constant that refers to the class and constants begin with a capital letter."
+      "answer": "Because the `class` keyword creates a new constant that refers to the class and constants begin with a capital letter."
     },
     {
       "question": "Is `#initialize` an instance method or a class method?  ",
