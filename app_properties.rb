@@ -1,5 +1,5 @@
 class AppProperties
-  VERSION = '1'
+  VERSION = '1.1'
   SKU_NAME = 'rubytrivia' #default
   COMPANY_NAME = 'com.iconoclastlabs.'
   
@@ -12,7 +12,7 @@ class AppProperties
   end
 
   def app_version
-    VERSION.scan(/\d+/).first
+    VERSION
   end
 
   def frameworks

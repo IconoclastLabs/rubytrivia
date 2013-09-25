@@ -11,7 +11,7 @@ class AboutScreen < PM::GroupedTableScreen
           { title: "Written by Iconoclast Labs", action: :email_us},
           { title: "Code framework ProMotion", action: :view_page, arguments: { site: "http://clearsightstudio.github.io/ProMotion/"}},
           { title: "Language RubyMotion", action: :view_page, arguments: { site: "http://www.rubymotion.com/"}},
-          { title: "View app code on Github", action: :view_page, arguments: { site: "https://github.com/GantMan/rubytrivia"}}
+          { title: "View site and code", action: :view_page, arguments: { site: "http://iconoclastlabs.github.io/rubytrivia/"}}
         ]
       },{
         title: "Graphics",
