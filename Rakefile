@@ -19,13 +19,14 @@ Motion::Project::App.setup do |app|
   app.short_version = props.app_version #required to be incremented for AppStore (http://iconoclastlabs.com/cms/blog/posts/updating-a-rubymotion-app-store-submission)
   app.device_family = props.devices
   #app.icons = props.icons
-  #app.provisioning_profile = props.provisioning
-  app.release do
-    app.codesign_certificate = props.distribution_certificate
-  end
-  app.development do
-    app.codesign_certificate = props.developer_certificate
-  end
+  app.provisioning_profile = './Ruby_Trivia.mobileprovision'
+  app.codesign_certificate = 'iPhone Distribution: Iconoclast Labs LLC'
+  # app.release do
+  #   app.codesign_certificate = props.distribution_certificate
+  # end
+  # app.development do
+  #   app.codesign_certificate = props.developer_certificate
+  # end
   app.frameworks += props.frameworks
   app.prerendered_icon = props.prerendered_icon
   app.interface_orientations = [:portrait, :landscape_left, :landscape_right]
