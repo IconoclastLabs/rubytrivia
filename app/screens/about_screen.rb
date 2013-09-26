@@ -23,7 +23,7 @@ class AboutScreen < PM::GroupedTableScreen
       },{
         title: "Questions",
         cells: [
-          { title: "Github gregstallings/ruby-trivia", action: :view_page, arguments: { site: "https://github.com/gregstallings/ruby-trivia"}},
+          { title: "GitHub gregstallings/ruby-trivia", action: :view_page, arguments: { site: "https://github.com/gregstallings/ruby-trivia"}},
           { title: "Configure Questions", action: :settings_modal}
         ]
       }
