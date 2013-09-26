@@ -4,7 +4,7 @@ class AppProperties
   COMPANY_NAME = 'com.iconoclastlabs.'
   
   def name
-    'ruby_trivia'
+    'Ruby Trivia'
   end
 
   def self.version
