@@ -9,3 +9,4 @@ View [Github Page](http://iconoclastlabs.github.io/rubytrivia/)
 ![RubyTrivia](./resources/Default-568h@2x.png "Screenshot")
 
 Simple ProMotion app, based off of [gregstallings ruby-trivia](https://github.com/gregstallings/ruby-trivia)
+For more information on the code see [my presentation on RubyMotion here](https://github.com/GantMan/RubyMotion-Intro)
