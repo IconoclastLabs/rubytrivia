@@ -1,7 +1,12 @@
 class AboutScreen < PM::TableScreen
-  #stylesheet :trivia_stylesheet
+  stylesheet AboutScreenStylesheet
   attr_accessor :trivia
   title "About"
+
+  def on_appear
+    rmq.apply_style :root_view
+    rmq(UITableViewCell).style { |st| st.background_color = rmq.color.clear }
+  end
 
   def table_data
     @credit_table_data ||= [

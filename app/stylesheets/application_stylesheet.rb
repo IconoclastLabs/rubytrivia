@@ -13,7 +13,14 @@ class ApplicationStylesheet < RubyMotionQuery::Stylesheet
   end
 
   def screen_style st
-    st.background_image = image.resource('retina_wood')
+    background_image = image.resource('retina_wood')
+
+    if st.view.is_a?(UITableView)
+      st.background_color = color.clear
+      st.view.backgroundView = UIImageView.alloc.initWithImage(background_image)
+    else
+      st.view.backgroundColor = UIColor.colorWithPatternImage(background_image)
+    end
   end
 
 end
