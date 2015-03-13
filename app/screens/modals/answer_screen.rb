@@ -7,7 +7,7 @@ class AnswerScreen < PM::Screen
   def will_appear
     @view_is_set_up ||= set_up_view
     @label.code_style(answer)
-    ap "Answer will appear"
+    mp "Answer will appear"
   end
 
   def set_up_view
