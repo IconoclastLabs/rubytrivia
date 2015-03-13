@@ -46,7 +46,7 @@ class AboutScreen < PM::GroupedTableScreen
   end
 
   def settings_modal
-    ap "Show Settings"
+    mp "Show Settings"
     open_modal SettingsScreen.new(nav_bar: true, trivia: @trivia)
   end
 

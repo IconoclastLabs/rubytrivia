@@ -1,12 +1,10 @@
 source "https://rubygems.org"
 
 gem "rake"
-gem "ProMotion"
-gem "teacup"
+gem "teacup", "~> 2.1.9"
 gem "bubble-wrap"
-gem "awesome_print_motion"
 gem 'sugarcube', :require => 'sugarcube-common'
-gem 'lolcommits'
-gem 'formotion'
+#gem 'lolcommits'
+gem 'redpotion', github: 'InfiniteRed/redpotion'
 gem 'motion-map'
 gem "motion-redgreen"

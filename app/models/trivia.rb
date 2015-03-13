@@ -37,11 +37,11 @@ class Trivia
 
     @lines.shuffle!
     @lines.push({"answer"=>"Click on About -> Settings!", "question"=>"No Categories Selected"}) if @lines.empty?
-    ap "Filtered Lines! Count = #{@lines.size}"
+    mp "Filtered Lines! Count = #{@lines.size}"
   end
 
   def seed_quips
-    ap "Seed quips called"
+    mp "Seed quips called"
     seed_file = NSBundle.mainBundle.pathForResource('qa', ofType:'json')
     json_string = String.new(NSString.stringWithContentsOfFile(seed_file))
     BW::JSON.parse(json_string)
@@ -52,13 +52,13 @@ class Trivia
   end
 
   def perform_update
-    ap "downloading update"
+    mp "downloading update"
     BW::HTTP.get("https://raw.github.com/IconoclastLabs/rubytrivia/master/resources/qa.json") do |response|
       if response.ok?
-        ap "Download complete and ok. Now setting it to the new file"
+        mp "Download complete and ok. Now setting it to the new file"
         App::Persistence['trivia'] = BW::JSON.parse(response.body.to_str)
       else
-        ap "Download Failed: #{response.error_message}"
+        mp "Download Failed: #{response.error_message}"
         false
       end
     end
