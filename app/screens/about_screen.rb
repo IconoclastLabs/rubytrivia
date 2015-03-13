@@ -3,9 +3,10 @@ class AboutScreen < PM::TableScreen
   attr_accessor :trivia
   title "About"
 
-  def on_appear
+  def will_appear
     rmq.apply_style :root_view
-    rmq(UITableViewCell).style { |st| st.background_color = rmq.color.clear }
+    #rmq(UITableViewCell).style { |st| st.background_color = rmq.color.clear }
+    @background_image = image.resource('retina_wood')
   end
 
   def table_data
@@ -16,42 +17,74 @@ class AboutScreen < PM::TableScreen
             title: 'Share the app',
             subtitle: 'Text, Email, Tweet, or Facebook!',
             image: 'share',
-            action: :share
+            action: :share,
+            properties: { background_color: UIColor.colorWithPatternImage(@background_image) }
           }, {
             title: "Rate #{App.name} on iTunes",
             action: :rate_itunes,
-            image: 'itunes'
-          }]
+            image: 'itunes',
+            properties: { background_color: UIColor.colorWithPatternImage(@background_image) }
+        }]
       },{
         title: "Code",
-        cells: [
-          { title: "Written by Iconoclast Labs", action: :email_us},
-          { title: "Code framework RedPotion", action: :view_page, arguments: { site: "http://clearsightstudio.github.io/ProMotion/"}},
-          { title: "Language RubyMotion", action: :view_page, arguments: { site: "http://www.rubymotion.com/"}},
-          { title: "View site and code", action: :view_page, arguments: { site: "http://iconoclastlabs.github.io/rubytrivia/"}}
-        ]
+        cells: [{
+            title: "Written by Iconoclast Labs",
+            action: :email_us,
+            properties: { background_color: UIColor.colorWithPatternImage(@background_image) }
+          },{
+            title: "Code framework RedPotion",
+            action: :view_page,
+            arguments: { site: "http://clearsightstudio.github.io/ProMotion/"},
+            properties: { background_color: UIColor.colorWithPatternImage(@background_image) }
+          },{
+            title: "Language RubyMotion",
+            action: :view_page,
+            arguments: { site: "http://www.rubymotion.com/"},
+            properties: { background_color: UIColor.colorWithPatternImage(@background_image) }
+          },{
+            title: "View site and code",
+            action: :view_page,
+            arguments: { site: "http://iconoclastlabs.github.io/rubytrivia/"},
+            properties: { background_color: UIColor.colorWithPatternImage(@background_image) }
+        }]
       },{
         title: "Graphics",
-        cells: [
-          { title: "Background: SubtlePatterns.com", action: :view_page, arguments: { site: "http://subtlepatterns.com/retina-wood/"}},
-          { title: "Icon Julien Deveaux : NounProject", action: :view_page, arguments: { site: "http://thenounproject.com/noun/ruby/#icon-No15720"}},
-          { title: "Formatting with Teacup", action: :view_page, arguments: { site: "https://github.com/rubymotion/teacup"}}
-        ]
+        cells: [{
+            title: "Background: SubtlePatterns.com",
+            action: :view_page,
+            arguments: { site: "http://subtlepatterns.com/retina-wood/"},
+            properties: { background_color: UIColor.colorWithPatternImage(@background_image) }
+          },{
+            title: "Icon Julien Deveaux : NounProject",
+            action: :view_page,
+            arguments: { site: "http://thenounproject.com/noun/ruby/#icon-No15720"},
+            properties: { background_color: UIColor.colorWithPatternImage(@background_image) }
+          },{
+            title: "Formatting with Teacup",
+            action: :view_page,
+            arguments: { site: "https://github.com/rubymotion/teacup"},
+            properties: { background_color: UIColor.colorWithPatternImage(@background_image) }
+        }]
       },{
         title: "Questions",
-        cells: [
-          { title: "Github gregstallings/ruby-trivia", action: :view_page, arguments: { site: "https://github.com/gregstallings/ruby-trivia"}},
-          { title: "Configure Questions", action: :settings_modal}
-        ]
+        cells: [{
+            title: "Github gregstallings/ruby-trivia",
+            action: :view_page,
+            arguments: { site: "https://github.com/gregstallings/ruby-trivia"},
+            properties: { background_color: UIColor.colorWithPatternImage(@background_image) }
+          },{
+            title: "Configure Questions", action: :settings_modal,
+            properties: { background_color: UIColor.colorWithPatternImage(@background_image) }
+        }]
       }
     ]
 
   end
 
-  def will_appear
-    view.backgroundView = nil # WAS NEEDED FOR iOS6
-    set_attributes self.view, stylename: :trivia_view
-  end
+  # def will_appear
+  #   view.backgroundView = nil # WAS NEEDED FOR iOS6
+  #   set_attributes self.view, stylename: :trivia_view
+  # end
 
   def email_us
     mailto_link = "mailto:developers@iconoclastlabs.com".nsurl
