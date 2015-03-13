@@ -32,4 +32,8 @@ Motion::Project::App.setup do |app|
   app.interface_orientations = [:portrait, :landscape_left, :landscape_right]
 
   app.redgreen_style = :full # default: :focused
+
+  app.pods do
+    pod 'Appirater'
+  end
 end

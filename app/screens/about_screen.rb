@@ -1,4 +1,4 @@
-class AboutScreen < PM::GroupedTableScreen
+class AboutScreen < PM::TableScreen
   #stylesheet :trivia_stylesheet
   attr_accessor :trivia
   title "About"
@@ -6,10 +6,22 @@ class AboutScreen < PM::GroupedTableScreen
   def table_data
     @credit_table_data ||= [
       {
+        title: "Share!",
+        cells: [{
+            title: 'Share the app',
+            subtitle: 'Text, Email, Tweet, or Facebook!',
+            image: 'share',
+            action: :share
+          }, {
+            title: "Rate #{App.name} on iTunes",
+            action: :rate_itunes,
+            image: 'itunes'
+          }]
+      },{
         title: "Code",
         cells: [
           { title: "Written by Iconoclast Labs", action: :email_us},
-          { title: "Code framework ProMotion", action: :view_page, arguments: { site: "http://clearsightstudio.github.io/ProMotion/"}},
+          { title: "Code framework RedPotion", action: :view_page, arguments: { site: "http://clearsightstudio.github.io/ProMotion/"}},
           { title: "Language RubyMotion", action: :view_page, arguments: { site: "http://www.rubymotion.com/"}},
           { title: "View site and code", action: :view_page, arguments: { site: "http://iconoclastlabs.github.io/rubytrivia/"}}
         ]
@@ -48,6 +60,21 @@ class AboutScreen < PM::GroupedTableScreen
   def settings_modal
     mp "Show Settings"
     open_modal SettingsScreen.new(nav_bar: true, trivia: @trivia)
+  end
+
+  def share
+    BW::UIActivityViewController.new(
+      items: "I'm using the #{App.name} app to learn more about Ruby. Check it out! http://iconoclastlabs.github.io/rubytrivia/",
+      animated: true,
+    ) do |activity_type, completed|
+      # share completed
+    end
+
+  end
+
+  def rate_itunes
+    #https://github.com/arashpayan/appirater
+    Appirater.rateApp
   end
 
 

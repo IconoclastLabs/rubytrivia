@@ -7,7 +7,6 @@ class AnswerScreen < PM::Screen
   def will_appear
     @label = append!(UILabel, :main_text)
     @label.code_style(answer)
-    mp "Answer will appear"
   end
 
 end

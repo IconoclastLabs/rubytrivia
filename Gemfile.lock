@@ -79,6 +79,8 @@ PLATFORMS
 
 DEPENDENCIES
   bubble-wrap
+  cocoapods
+  motion-cocoapods
   motion-map
   motion-redgreen
   rake

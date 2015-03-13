@@ -46,7 +46,7 @@ class QuestionScreen < PM::Screen
       #   question_view.fade_out
       #   question_view.slide swipe_direction
       # end.and_then do
-      #   question_view.code_style(new_question)
+         question_view.code_style(new_question)
       #   question_view.frame = start_frame
       # end.and_then do
       #   question_view.fade_in
