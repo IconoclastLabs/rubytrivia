@@ -12,5 +12,8 @@ class ApplicationStylesheet < RubyMotionQuery::Stylesheet
     color.add_named :battleship_gray,   '#7F7F7F'
   end
 
+  def screen_style st
+    st.background_image = image.resource('retina_wood')
+  end
 
 end
