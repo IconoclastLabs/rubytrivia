@@ -1,0 +1,186 @@
+<?xml version='1.0'?>
+<signatures version='1.0'>
+<constant const='true' declared_type='NSString*' name='kAppiraterCurrentVersion' type='@'/>
+<constant const='true' declared_type='NSString*' name='kAppiraterDeclinedToRate' type='@'/>
+<constant const='true' declared_type='NSString*' name='kAppiraterFirstUseDate' type='@'/>
+<constant const='true' declared_type='NSString*' name='kAppiraterRatedCurrentVersion' type='@'/>
+<constant const='true' declared_type='NSString*' name='kAppiraterReminderRequestDate' type='@'/>
+<constant const='true' declared_type='NSString*' name='kAppiraterSignificantEventCount' type='@'/>
+<constant const='true' declared_type='NSString*' name='kAppiraterUseCount' type='@'/>
+<enum name='COCOAPODS_VERSION_MAJOR_Appirater' value='2'/>
+<enum name='COCOAPODS_VERSION_MINOR_Appirater' value='0'/>
+<enum name='COCOAPODS_VERSION_PATCH_Appirater' value='4'/>
+<class name='Appirater'>
+<method class_method='true' selector='appEnteredForeground:'>
+<arg declared_type='BOOL' index='0' name='canPromptForRating' type='B'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='appLaunched'>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='appLaunched:'>
+<arg declared_type='BOOL' index='0' name='canPromptForRating' type='B'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='bundle'>
+<retval declared_type='NSBundle*' type='@'/>
+</method>
+<method class_method='true' selector='closeModal'>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='delegate'>
+<retval declared_type='NSObject*' type='@'/>
+</method>
+<method class_method='true' selector='forceShowPrompt:'>
+<arg declared_type='BOOL' index='0' name='displayRateLaterButton' type='B'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='openInAppStore'>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method class_method='true' selector='rateApp'>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='ratingAlert'>
+<retval declared_type='UIAlertView*' type='@'/>
+</method>
+<method class_method='true' selector='setAlwaysUseMainBundle:'>
+<arg declared_type='BOOL' index='0' name='useMainBundle' type='B'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setAppId:'>
+<arg declared_type='NSString*' index='0' name='appId' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setCustomAlertCancelButtonTitle:'>
+<arg declared_type='NSString*' index='0' name='cancelTitle' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setCustomAlertMessage:'>
+<arg declared_type='NSString*' index='0' name='message' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setCustomAlertRateButtonTitle:'>
+<arg declared_type='NSString*' index='0' name='rateTitle' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setCustomAlertRateLaterButtonTitle:'>
+<arg declared_type='NSString*' index='0' name='rateLaterTitle' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setCustomAlertTitle:'>
+<arg declared_type='NSString*' index='0' name='title' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setDaysUntilPrompt:'>
+<arg declared_type='double' index='0' name='value' type='d'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setDebug:'>
+<arg declared_type='BOOL' index='0' name='debug' type='B'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setDelegate:'>
+<arg declared_type='id' index='0' name='delegate' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setDelegate:'>
+<arg declared_type='NSObject*' index='0' name='delegate' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setOpenInAppStore:'>
+<arg declared_type='BOOL' index='0' name='openInAppStore' type='B'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setOpenInAppStore:'>
+<arg declared_type='BOOL' index='0' name='openInAppStore' type='B'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setRatingAlert:'>
+<arg declared_type='UIAlertView*' index='0' name='ratingAlert' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setSignificantEventsUntilPrompt:'>
+<arg declared_type='NSInteger' index='0' name='value' type='i' type64='q'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setTimeBeforeReminding:'>
+<arg declared_type='double' index='0' name='value' type='d'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setUsesAnimation:'>
+<arg declared_type='BOOL' index='0' name='animation' type='B'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setUsesUntilPrompt:'>
+<arg declared_type='NSInteger' index='0' name='value' type='i' type64='q'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='showPrompt'>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='tryToShowPrompt'>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='userDidSignificantEvent:'>
+<arg declared_type='BOOL' index='0' name='canPromptForRating' type='B'/>
+<retval declared_type='void' type='v'/>
+</method>
+</class>
+<class name='NSObject'>
+<method selector='appiraterDidDeclineToRate:'>
+<arg declared_type='Appirater*' index='0' name='appirater' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='appiraterDidDismissModalView:animated:'>
+<arg declared_type='Appirater*' index='0' name='appirater' type='@'/>
+<arg declared_type='BOOL' index='1' name='animated' type='B'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='appiraterDidDisplayAlert:'>
+<arg declared_type='Appirater*' index='0' name='appirater' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='appiraterDidOptToRate:'>
+<arg declared_type='Appirater*' index='0' name='appirater' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='appiraterDidOptToRemindLater:'>
+<arg declared_type='Appirater*' index='0' name='appirater' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='appiraterWillPresentModalView:animated:'>
+<arg declared_type='Appirater*' index='0' name='appirater' type='@'/>
+<arg declared_type='BOOL' index='1' name='animated' type='B'/>
+<retval declared_type='void' type='v'/>
+</method>
+</class>
+<informal_protocol name='AppiraterDelegate'>
+<method selector='appiraterDidDeclineToRate:' type='v12@0:4@8' type64='v24@0:8@16'>
+<arg declared_type='Appirater*' index='0' name='appirater' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='appiraterDidDismissModalView:animated:' type='v16@0:4@8B12' type64='v28@0:8@16B24'>
+<arg declared_type='Appirater*' index='0' name='appirater' type='@'/>
+<arg declared_type='BOOL' index='1' name='animated' type='B'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='appiraterDidDisplayAlert:' type='v12@0:4@8' type64='v24@0:8@16'>
+<arg declared_type='Appirater*' index='0' name='appirater' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='appiraterDidOptToRate:' type='v12@0:4@8' type64='v24@0:8@16'>
+<arg declared_type='Appirater*' index='0' name='appirater' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='appiraterDidOptToRemindLater:' type='v12@0:4@8' type64='v24@0:8@16'>
+<arg declared_type='Appirater*' index='0' name='appirater' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='appiraterWillPresentModalView:animated:' type='v16@0:4@8B12' type64='v28@0:8@16B24'>
+<arg declared_type='Appirater*' index='0' name='appirater' type='@'/>
+<arg declared_type='BOOL' index='1' name='animated' type='B'/>
+<retval declared_type='void' type='v'/>
+</method>
+</informal_protocol>
+</signatures>
