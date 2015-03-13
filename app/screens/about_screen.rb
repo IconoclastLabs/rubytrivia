@@ -34,7 +34,7 @@ class AboutScreen < PM::TableScreen
           },{
             title: "Code framework RedPotion",
             action: :view_page,
-            arguments: { site: "http://clearsightstudio.github.io/ProMotion/"},
+            arguments: { site: "https://github.com/infinitered/redpotion"},
             properties: { background_color: UIColor.colorWithPatternImage(@background_image) }
           },{
             title: "Language RubyMotion",
@@ -59,12 +59,7 @@ class AboutScreen < PM::TableScreen
             action: :view_page,
             arguments: { site: "http://thenounproject.com/noun/ruby/#icon-No15720"},
             properties: { background_color: UIColor.colorWithPatternImage(@background_image) }
-          },{
-            title: "Formatting with Teacup",
-            action: :view_page,
-            arguments: { site: "https://github.com/rubymotion/teacup"},
-            properties: { background_color: UIColor.colorWithPatternImage(@background_image) }
-        }]
+          }]
       },{
         title: "Questions",
         cells: [{
@@ -87,12 +82,19 @@ class AboutScreen < PM::TableScreen
   # end
 
   def email_us
-    mailto_link = "mailto:developers@iconoclastlabs.com".nsurl
-    UIApplication.sharedApplication.openURL(mailto_link)
+    BW::Mail.compose({
+      delegate: self,
+      to: 'developers@iconoclastlabs.com',
+      subject: "#{App.name} App Feedback",
+      message: "",
+      animated: true
+    }) do |result, error|
+      #result.sent? - result.canceled? - result.failed?
+    end
   end
 
   def view_page(args={})
-    args[:site].nsurl.open
+    App.open_url(args[:site])
   end
 
   def settings_modal

@@ -3,6 +3,7 @@ $:.unshift("/Library/RubyMotion/lib")
 require 'motion/project/template/ios'
 require "rubygems"
 require 'bundler'
+require 'bubble-wrap/mail'
 Bundler.require
 
 require './app_properties'
