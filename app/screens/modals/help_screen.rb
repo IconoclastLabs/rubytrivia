@@ -1,12 +1,12 @@
 class HelpScreen < PM::Screen
   include TriviaModal
-  stylesheet :trivia_stylesheet
+  #stylesheet :trivia_stylesheet
   title "Help"
-  
+
   def will_appear
     @view_is_set_up ||= set_up_view
   end
-  
+
   def set_up_view
     set_attributes self.view, stylename: :trivia_view
     set_nav_bar_button :left, title: "Close", action: :close_modal_tapped
@@ -21,5 +21,5 @@ class HelpScreen < PM::Screen
   def close_modal_tapped
     close
   end
-  
+
 end

@@ -1,6 +1,6 @@
 class AnswerScreen < PM::Screen
   include TriviaModal
-  stylesheet :trivia_stylesheet
+  #stylesheet :trivia_stylesheet
   title "Answer"
   attr_accessor :answer
 

@@ -1,40 +1,39 @@
 class QuestionScreen < PM::Screen
-  stylesheet :trivia_stylesheet
+  stylesheet QuestionScreenStylesheet
   title "Ruby Trivia"
 
   def will_appear
-    @view_setup ||= set_up_view
-    # just in-case orientation changed while away
-    self.view.restyle!
+    set_up_view
     @label.code_style(@trivia.current_quip["question"])
   end
 
   def set_up_view
     set_nav_bar_button :left, title: "Help", action: :help_tapped
     set_nav_bar_button :right, title: "About", action: :about_tapped
-    set_attributes self.view, stylename: :trivia_view
-    add @label = UILabel.new, stylename: :my_label
+
+    @label = append!(UILabel, :main_label)
+
     # our trivia engine
     @trivia = Trivia.new
 
-    view.on_tap do
-      ap "Tapped: Show Answer"
+    rmq(view).on(:tap) do
+      mp "Tapped: Show Answer"
       open_modal AnswerScreen.new(nav_bar: true,
         transition_style: UIModalTransitionStyleFlipHorizontal,
         presentation_style: UIModalPresentationFormSheet,
         answer: @trivia.current_quip["answer"])
     end
 
-    view.on_swipe :left do
-      ap "Swiped: Show Next"
-      new_question(@label, @trivia.next["question"])
-    end
+    # view.on_swipe :left do
+    #   ap "Swiped: Show Next"
+    #   new_question(@label, @trivia.next["question"])
+    # end
 
-    view.on_swipe :right do
-      ap "Swiped: Show Previous"
-      new_question(@label, @trivia.previous["question"], :right)
-    end
-    true
+    # view.on_swipe :right do
+    #   ap "Swiped: Show Previous"
+    #   new_question(@label, @trivia.previous["question"], :right)
+    # end
+
   end
 
   private
@@ -56,12 +55,12 @@ class QuestionScreen < PM::Screen
     end
 
     def about_tapped
-      ap "About Called"
+      mp "About Called"
       open AboutScreen.new(nav_bar: true, trivia: @trivia)
     end
 
     def help_tapped
-      ap "Help Called"
+      mp "Help Called"
       open_modal HelpScreen.new(nav_bar: true)
     end
 

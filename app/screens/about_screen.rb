@@ -1,5 +1,5 @@
 class AboutScreen < PM::GroupedTableScreen
-  stylesheet :trivia_stylesheet
+  #stylesheet :trivia_stylesheet
   attr_accessor :trivia
   title "About"
 
