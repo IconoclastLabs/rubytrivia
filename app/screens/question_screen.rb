@@ -39,6 +39,29 @@ class QuestionScreen < PM::Screen
 
     def new_question (question_view, new_question, swipe_direction = :left)
       start_frame = question_view.frame
+
+      rmq(question_view).animations.slide_out(to_direction: swipe_direction, duration: 0.2, completion: -> (f, q) {
+        q.get.code_style(new_question)
+        q.get.alpha = 0
+        opts = {
+          duration: 0.4,
+          options: UIViewAnimationOptionCurveEaseOut,
+          before: ->(bq) {
+            case swipe_direction
+            when :left
+              bq.move(l: rmq.device.width)
+            when :right
+              bq.move(l: -rmq.device.width)
+            end
+          },
+          animations: ->(aq, return_var) {
+            aq.frame = start_frame
+            aq.get.alpha = 1
+          }
+        }
+        q.animate(opts)
+      })
+
       # simply slides away the current question with a fade,
       # invisibly sets the new text and fades it in
       # ~ thank you sugarcube!
@@ -46,7 +69,7 @@ class QuestionScreen < PM::Screen
       #   question_view.fade_out
       #   question_view.slide swipe_direction
       # end.and_then do
-         question_view.code_style(new_question)
+      #   question_view.code_style(new_question)
       #   question_view.frame = start_frame
       # end.and_then do
       #   question_view.fade_in
