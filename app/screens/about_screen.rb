@@ -59,16 +59,13 @@ class AboutScreen < PM::TableScreen
             action: :view_page,
             arguments: { site: "http://thenounproject.com/noun/ruby/#icon-No15720"},
             properties: { background_color: UIColor.colorWithPatternImage(@background_image) }
-          }]
+        }]
       },{
         title: "Questions",
         cells: [{
             title: "Github gregstallings/ruby-trivia",
             action: :view_page,
             arguments: { site: "https://github.com/gregstallings/ruby-trivia"},
-            properties: { background_color: UIColor.colorWithPatternImage(@background_image) }
-          },{
-            title: "Configure Questions", action: :settings_modal,
             properties: { background_color: UIColor.colorWithPatternImage(@background_image) }
         }]
       }
