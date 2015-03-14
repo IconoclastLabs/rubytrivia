@@ -48,7 +48,7 @@ class AboutScreen < PM::TableScreen
             properties: { background_color: UIColor.colorWithPatternImage(@background_image) }
         }]
       },{
-        title: "Graphics",
+        title: "Graphics Credits",
         cells: [{
             title: "Background: SubtlePatterns.com",
             action: :view_page,
