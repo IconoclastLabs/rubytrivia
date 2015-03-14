@@ -28,7 +28,7 @@ class AboutScreen < PM::TableScreen
       },{
         title: "Code",
         cells: [{
-            title: "Written by Iconoclast Labs",
+            title: "Written by Gant @ Iconoclast Labs",
             action: :email_us,
             properties: { background_color: UIColor.colorWithPatternImage(@background_image) }
           },{
@@ -42,7 +42,7 @@ class AboutScreen < PM::TableScreen
             arguments: { site: "http://www.rubymotion.com/"},
             properties: { background_color: UIColor.colorWithPatternImage(@background_image) }
           },{
-            title: "View site and code",
+            title: "View #{App.name} site and code",
             action: :view_page,
             arguments: { site: "http://iconoclastlabs.github.io/rubytrivia/"},
             properties: { background_color: UIColor.colorWithPatternImage(@background_image) }
