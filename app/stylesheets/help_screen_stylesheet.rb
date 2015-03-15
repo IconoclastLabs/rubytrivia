@@ -10,7 +10,12 @@ class HelpScreenStylesheet < ApplicationStylesheet
 
   def help_image (st, image_name)
     st.image = image.resource(image_name)
-    st.frame = {w: screen_width, h: 110, t: 100, l: 0, padding: 10}
+    # Adjust top depending on orientation
+    from_top = (rmq.device.orientation == :portrait) ? 100 : 50;
+    st.frame = {w: screen_width, h: screen_height/5, t: from_top, l: 0, padding: 10}
+    st.content_mode = UIViewContentModeScaleAspectFit
+
+    st.tag(:help_image)
   end
 
   def swipe_help st

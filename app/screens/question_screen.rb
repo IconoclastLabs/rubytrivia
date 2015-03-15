@@ -4,7 +4,7 @@ class QuestionScreen < PM::Screen
 
   def on_load
     set_up_view
-    @label.code_style(@trivia.current_quip["question"])
+    setup_gestures
   end
 
   def set_up_view
@@ -15,24 +15,14 @@ class QuestionScreen < PM::Screen
 
     # our trivia engine
     @trivia = Trivia.new
+  end
 
-    rmq(view).on(:tap) do
-      mp "Tapped: Show Answer"
-      open_modal AnswerScreen.new(nav_bar: true,
-        transition_style: UIModalTransitionStyleFlipHorizontal,
-        presentation_style: UIModalPresentationFormSheet,
-        answer: @trivia.current_quip["answer"])
-    end
+  def will_animate_rotate(orientation, duration)
+    make_it_pretty
+  end
 
-    rmq(view).on(:swipe_left) do
-      mp "Swiped: Show Next"
-      new_question(@label, @trivia.next["question"])
-    end
-
-    rmq(view).on(:swipe_right) do
-      mp "Swiped: Show Previous"
-      new_question(@label, @trivia.previous["question"], :right)
-    end
+  def will_appear
+    make_it_pretty
   end
 
   private
@@ -64,6 +54,11 @@ class QuestionScreen < PM::Screen
 
     end
 
+    def make_it_pretty
+      find.all.reapply_styles
+      @label.code_style(@trivia.current_quip["question"])
+    end
+
     def about_tapped
       mp "About Called"
       open AboutScreen.new(nav_bar: true, trivia: @trivia)
@@ -72,6 +67,26 @@ class QuestionScreen < PM::Screen
     def help_tapped
       mp "Help Called"
       open_modal HelpScreen.new(nav_bar: true)
+    end
+
+    def setup_gestures
+      rmq(view).on(:tap) do
+        mp "Tapped: Show Answer"
+        open_modal AnswerScreen.new(nav_bar: true,
+          transition_style: UIModalTransitionStyleFlipHorizontal,
+          presentation_style: UIModalPresentationFormSheet,
+          answer: @trivia.current_quip["answer"])
+      end
+
+      rmq(view).on(:swipe_left) do
+        mp "Swiped: Show Next"
+        new_question(@label, @trivia.next["question"])
+      end
+
+      rmq(view).on(:swipe_right) do
+        mp "Swiped: Show Previous"
+        new_question(@label, @trivia.previous["question"], :right)
+      end
     end
 
 end

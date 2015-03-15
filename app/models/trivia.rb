@@ -21,7 +21,6 @@ class Trivia
   end
 
   def seed_quips
-    mp "Seed quips called"
     seed_file = NSBundle.mainBundle.pathForResource('qa', ofType:'json')
     json_string = String.new(NSString.stringWithContentsOfFile(seed_file))
     BW::JSON.parse(json_string)

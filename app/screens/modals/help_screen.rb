@@ -9,10 +9,14 @@ class HelpScreen < PM::Screen
     append(UIImageView, :swipe_help)
     append(UIImageView, :tap_help)
     append(UIImageView, :previous_help)
-
-    find(UIImageView).distribute(:vertical, margin: 10)
-
     append(UIImageView, :footer_help)
+
+    find(:help_image).distribute(:vertical, margin: 10)
+  end
+
+  def will_animate_rotate(orientation, duration)
+    find.all.reapply_styles
+    find(:help_image).distribute(:vertical, margin: 10)
   end
 
 end

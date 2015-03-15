@@ -5,7 +5,6 @@ class AboutScreen < PM::TableScreen
 
   def will_appear
     rmq.apply_style :root_view
-    #rmq(UITableViewCell).style { |st| st.background_color = rmq.color.clear }
     @background_image = image.resource('retina_wood')
   end
 
