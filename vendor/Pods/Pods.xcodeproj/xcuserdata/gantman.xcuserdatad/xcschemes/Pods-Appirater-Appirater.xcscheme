@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1F465DD657BB0AA39084AC25"
+               BlueprintIdentifier = "98F65946D74D454A3ADA2773"
                BuildableName = "Appirater.bundle"
                BlueprintName = "Pods-Appirater-Appirater"
                ReferencedContainer = "container:Pods.xcodeproj">

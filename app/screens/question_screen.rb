@@ -62,18 +62,6 @@ class QuestionScreen < PM::Screen
         q.animate(opts)
       })
 
-      # simply slides away the current question with a fade,
-      # invisibly sets the new text and fades it in
-      # ~ thank you sugarcube!
-      # UIView.animation_chain do
-      #   question_view.fade_out
-      #   question_view.slide swipe_direction
-      # end.and_then do
-      #   question_view.code_style(new_question)
-      #   question_view.frame = start_frame
-      # end.and_then do
-      #   question_view.fade_in
-      # end.start
     end
 
     def about_tapped

@@ -3,11 +3,10 @@ class Trivia
 
   def initialize
     @current_quip = {"answer"=>"Begin swiping to get started!", "question"=>"Welcome to Ruby Trivia!"}
-    App::Persistence['trivia'] ||= self.seed_quips
+    App::Persistence['trivia'] = seed_quips
     @quips = App::Persistence['trivia'].dup
     @current_position = 0
-    filter_quips
-    perform_update
+    load_lines
   end
 
   def previous
@@ -21,25 +20,6 @@ class Trivia
     @current_quip = @lines[@current_position]
   end
 
-  def filter_quips
-    # Populate lines from live categories
-    @lines = [] #make sure it's empty
-    cat_settings = App::Persistence["FORMOTION_settings"]
-
-    # If settings have been modified, use those; otherwise just add all questions
-    categories.each do |cat|
-      if cat_settings
-        @lines += @quips[cat] if cat_settings[clean_symbol(cat)]
-      else
-        @lines += @quips[cat]
-      end
-    end
-
-    @lines.shuffle!
-    @lines.push({"answer"=>"Click on About -> Settings!", "question"=>"No Categories Selected"}) if @lines.empty?
-    mp "Filtered Lines! Count = #{@lines.size}"
-  end
-
   def seed_quips
     mp "Seed quips called"
     seed_file = NSBundle.mainBundle.pathForResource('qa', ofType:'json')
@@ -47,22 +27,19 @@ class Trivia
     BW::JSON.parse(json_string)
   end
 
-  def categories
-    @quips.keys.sort
-  end
+  def load_lines
+    @lines = []
 
-  def perform_update
-    mp "downloading update"
-    BW::HTTP.get("https://raw.github.com/IconoclastLabs/rubytrivia/master/resources/qa.json") do |response|
-      if response.ok?
-        mp "Download complete and ok. Now setting it to the new file"
-        App::Persistence['trivia'] = BW::JSON.parse(response.body.to_str)
-      else
-        mp "Download Failed: #{response.error_message}"
-        false
-      end
+    categories.each do |cat|
+      @lines += @quips[cat]
     end
 
+    @lines.shuffle!
+    mp "#{@lines.size} Questions ready to go!"
+  end
+
+  def categories
+    @quips.keys.sort
   end
 
   def clean_symbol string
