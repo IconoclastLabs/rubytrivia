@@ -16,6 +16,12 @@ GIT
       afmotion
       motion-cocoapods
 
+GIT
+  remote: git://github.com/rubymotion/BubbleWrap.git
+  revision: 7b24c049bc82c431fe40721e398917a877f85f09
+  specs:
+    bubble-wrap (1.8.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -30,9 +36,6 @@ GEM
     afmotion (2.5)
       motion-cocoapods (>= 1.4.1)
       motion-require (>= 0.1)
-    bubble-wrap (1.7.1)
-      bubble-wrap-http (= 1.7.1)
-    bubble-wrap-http (1.7.1)
     claide (0.8.1)
     cocoapods (0.36.0)
       activesupport (>= 3.2.15)
@@ -93,7 +96,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bubble-wrap (~> 1.7.1)
+  bubble-wrap!
   cocoapods
   motion-cocoapods
   motion-concierge!
