@@ -1,19 +1,17 @@
 class AnswerScreen < PM::Screen
   include TriviaModal
-  stylesheet :trivia_stylesheet
+  stylesheet AnswerScreenStylesheet
   title "Answer"
   attr_accessor :answer
 
   def will_appear
-    @view_is_set_up ||= set_up_view
+    @label = append!(UILabel, :main_text)
     @label.code_style(answer)
-    ap "Answer will appear"
   end
 
-  def set_up_view
-    set_attributes self.view, stylename: :trivia_view
-    add @label = UILabel.new, stylename: :my_label
-    true
+  def will_animate_rotate(orientation, duration)
+    find.all.reapply_styles
+    @label.code_style(answer)
   end
 
 end

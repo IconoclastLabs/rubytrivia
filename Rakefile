@@ -3,6 +3,7 @@ $:.unshift("/Library/RubyMotion/lib")
 require 'motion/project/template/ios'
 require "rubygems"
 require 'bundler'
+require 'bubble-wrap/mail'
 Bundler.require
 
 require './app_properties'
@@ -32,4 +33,8 @@ Motion::Project::App.setup do |app|
   app.interface_orientations = [:portrait, :landscape_left, :landscape_right]
 
   app.redgreen_style = :full # default: :focused
+
+  app.pods do
+    pod 'Appirater'
+  end
 end

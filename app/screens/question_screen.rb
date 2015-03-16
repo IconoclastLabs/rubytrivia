@@ -1,68 +1,92 @@
 class QuestionScreen < PM::Screen
-  stylesheet :trivia_stylesheet
+  stylesheet QuestionScreenStylesheet
   title "Ruby Trivia"
 
-  def will_appear
-    @view_setup ||= set_up_view
-    # just in-case orientation changed while away
-    self.view.restyle!
-    @label.code_style(@trivia.current_quip["question"])
+  def on_load
+    set_up_view
+    setup_gestures
   end
 
   def set_up_view
     set_nav_bar_button :left, title: "Help", action: :help_tapped
     set_nav_bar_button :right, title: "About", action: :about_tapped
-    set_attributes self.view, stylename: :trivia_view
-    add @label = UILabel.new, stylename: :my_label
+
+    @label = append!(UILabel, :main_text)
+
     # our trivia engine
     @trivia = Trivia.new
+  end
 
-    view.on_tap do
-      ap "Tapped: Show Answer"
-      open_modal AnswerScreen.new(nav_bar: true,
-        transition_style: UIModalTransitionStyleFlipHorizontal,
-        presentation_style: UIModalPresentationFormSheet,
-        answer: @trivia.current_quip["answer"])
-    end
+  def will_animate_rotate(orientation, duration)
+    make_it_pretty
+  end
 
-    view.on_swipe :left do
-      ap "Swiped: Show Next"
-      new_question(@label, @trivia.next["question"])
-    end
-
-    view.on_swipe :right do
-      ap "Swiped: Show Previous"
-      new_question(@label, @trivia.previous["question"], :right)
-    end
-    true
+  def will_appear
+    make_it_pretty
   end
 
   private
 
     def new_question (question_view, new_question, swipe_direction = :left)
       start_frame = question_view.frame
-      # simply slides away the current question with a fade,
-      # invisibly sets the new text and fades it in
-      # ~ thank you sugarcube!
-      UIView.animation_chain do
-        question_view.fade_out
-        question_view.slide swipe_direction
-      end.and_then do
-        question_view.code_style(new_question)
-        question_view.frame = start_frame
-      end.and_then do
-        question_view.fade_in
-      end.start
+
+      rmq(question_view).animations.slide_out(to_direction: swipe_direction, duration: 0.2, completion: -> (f, q) {
+        q.get.code_style(new_question)
+        q.get.alpha = 0
+        opts = {
+          duration: 0.4,
+          options: UIViewAnimationOptionCurveEaseOut,
+          before: ->(bq) {
+            case swipe_direction
+            when :left
+              bq.move(l: rmq.device.width)
+            when :right
+              bq.move(l: -rmq.device.width)
+            end
+          },
+          animations: ->(aq, return_var) {
+            aq.frame = start_frame
+            aq.get.alpha = 1
+          }
+        }
+        q.animate(opts)
+      })
+
+    end
+
+    def make_it_pretty
+      find.all.reapply_styles
+      @label.code_style(@trivia.current_quip["question"])
     end
 
     def about_tapped
-      ap "About Called"
+      mp "About Called"
       open AboutScreen.new(nav_bar: true, trivia: @trivia)
     end
 
     def help_tapped
-      ap "Help Called"
+      mp "Help Called"
       open_modal HelpScreen.new(nav_bar: true)
+    end
+
+    def setup_gestures
+      rmq(view).on(:tap) do
+        mp "Tapped: Show Answer"
+        open_modal AnswerScreen.new(nav_bar: true,
+          transition_style: UIModalTransitionStyleFlipHorizontal,
+          presentation_style: UIModalPresentationFormSheet,
+          answer: @trivia.current_quip["answer"])
+      end
+
+      rmq(view).on(:swipe_left) do
+        mp "Swiped: Show Next"
+        new_question(@label, @trivia.next["question"])
+      end
+
+      rmq(view).on(:swipe_right) do
+        mp "Swiped: Show Previous"
+        new_question(@label, @trivia.previous["question"], :right)
+      end
     end
 
 end

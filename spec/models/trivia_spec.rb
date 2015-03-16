@@ -10,10 +10,6 @@ describe "Trivia" do
       should.raise(NoMethodError)
   end
 
-  it "stores everythinin App::Persistence['trivia']" do
-    App::Persistence['trivia'].should == @trivia.instance_variable_get("@quips")
-  end
-
   it "changes and returns current_quip on next" do
     old = @trivia.current_quip
     quip = @trivia.next
@@ -40,13 +36,6 @@ describe "Trivia" do
   it "lists categories based on the .json keys" do
     quips = @trivia.instance_variable_get("@quips")
     quips.keys.sort.should == @trivia.categories
-  end
-
-  it "can download the updated json file from github" do
-    result = @trivia.perform_update
-    wait 5.0 do
-      result.should.not == false
-    end
   end
 
 end

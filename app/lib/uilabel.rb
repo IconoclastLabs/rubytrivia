@@ -4,7 +4,6 @@ class UILabel
     def code_style text
       return if text.nil?
       self.text = text
-      self.fit_to_size(40) # make it fit
 
       # prepare the vars
       ranges = []
