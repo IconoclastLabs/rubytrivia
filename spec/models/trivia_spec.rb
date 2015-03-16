@@ -42,11 +42,4 @@ describe "Trivia" do
     quips.keys.sort.should == @trivia.categories
   end
 
-  it "can download the updated json file from github" do
-    result = @trivia.perform_update
-    wait 5.0 do
-      result.should.not == false
-    end
-  end
-
 end

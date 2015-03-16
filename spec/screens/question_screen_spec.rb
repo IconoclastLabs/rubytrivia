@@ -5,10 +5,6 @@ describe "QuestionScreen" do
   @screen = QuestionScreen.new nav_bar: true
   @screen.will_appear
 
-  it "stores title" do
-    QuestionScreen.get_title.should == 'Ruby Trivia'
-  end
-
   it "sets title when instantiated" do
     @screen.title.should == 'Ruby Trivia'
   end
@@ -25,8 +21,4 @@ describe "QuestionScreen" do
     @screen.navigationItem.leftBarButtonItem.should.not == nil
   end
 
-  it "has theme styles" do
-    Teacup::Stylesheet[:trivia_stylesheet].should.not == nil
-    Teacup::Stylesheet[:base_stylesheet].should.not == nil
-  end
 end
