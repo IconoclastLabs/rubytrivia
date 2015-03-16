@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/GantMan/motion-concierge.git
+  revision: 4c6f28d1de5e58b65a43c881ae80c79824ab4a65
+  specs:
+    motion-concierge (0.0.1)
+      afmotion
+      motion-cocoapods
+
+GIT
   remote: git://github.com/InfiniteRed/redpotion.git
   revision: db1f30d22448f2b0dc52cb1329ebc6c03a14fb1d
   specs:
@@ -7,14 +15,6 @@ GIT
       motion-cocoapods
       motion_print
       ruby_motion_query (~> 1.1)
-
-GIT
-  remote: git://github.com/OTGApps/motion-concierge.git
-  revision: 63d5b65dcd099824631cc5e9a78094c29d3913e0
-  specs:
-    motion-concierge (0.0.1)
-      afmotion
-      motion-cocoapods
 
 GIT
   remote: git://github.com/rubymotion/BubbleWrap.git

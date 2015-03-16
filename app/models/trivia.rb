@@ -3,8 +3,8 @@ class Trivia
 
   def initialize
     @current_quip = {"answer"=>"Begin swiping to get started!", "question"=>"Welcome to Ruby Trivia!"}
-    App::Persistence['trivia'] = seed_quips
-    @quips = App::Persistence['trivia'].dup
+    #App::Persistence['trivia'] = seed_quips
+    @quips = seed_quips
     @current_position = 0
     load_lines
   end
@@ -21,9 +21,7 @@ class Trivia
   end
 
   def seed_quips
-    seed_file = NSBundle.mainBundle.pathForResource('qa', ofType:'json')
-    json_string = String.new(NSString.stringWithContentsOfFile(seed_file))
-    BW::JSON.parse(json_string)
+    BW::JSON.parse(MotionConcierge.local_file_string)
   end
 
   def load_lines

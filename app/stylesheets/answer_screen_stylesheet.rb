@@ -9,7 +9,7 @@ class AnswerScreenStylesheet < ApplicationStylesheet
   end
 
   def main_text st
-    st.number_of_lines = 14
+    st.number_of_lines = 12
     st.adjusts_font_size = true
     st.frame = {t: 25, w: screen_width - 20, l: 10, h: screen_height - 20}
     st.font = font.large

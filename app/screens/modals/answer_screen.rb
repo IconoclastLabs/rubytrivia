@@ -11,6 +11,7 @@ class AnswerScreen < PM::Screen
 
   def will_animate_rotate(orientation, duration)
     find.all.reapply_styles
+    @label.code_style(answer)
   end
 
 end
