@@ -30,7 +30,7 @@ class QuestionScreen < PM::Screen
     def new_question (question_view, new_question, swipe_direction = :left)
       start_frame = question_view.frame
 
-      rmq(question_view).animations.slide_out(to_direction: swipe_direction, duration: 0.2, completion: -> (f, q) {
+      find(question_view).animations.slide_out(to_direction: swipe_direction, duration: 0.2, completion: -> (f, q) {
         q.get.code_style(new_question)
         q.get.alpha = 0
         opts = {
@@ -39,9 +39,9 @@ class QuestionScreen < PM::Screen
           before: ->(bq) {
             case swipe_direction
             when :left
-              bq.move(l: rmq.device.width)
+              bq.move(l: device.width)
             when :right
-              bq.move(l: -rmq.device.width)
+              bq.move(l: -device.width)
             end
           },
           animations: ->(aq, return_var) {
@@ -70,7 +70,7 @@ class QuestionScreen < PM::Screen
     end
 
     def setup_gestures
-      rmq(view).on(:tap) do
+      find(view).on(:tap) do
         mp "Tapped: Show Answer"
         open_modal AnswerScreen.new(nav_bar: true,
           transition_style: UIModalTransitionStyleFlipHorizontal,
@@ -78,12 +78,12 @@ class QuestionScreen < PM::Screen
           answer: @trivia.current_quip["answer"])
       end
 
-      rmq(view).on(:swipe_left) do
+      find(view).on(:swipe_left) do
         mp "Swiped: Show Next"
         new_question(@label, @trivia.next["question"])
       end
 
-      rmq(view).on(:swipe_right) do
+      find(view).on(:swipe_right) do
         mp "Swiped: Show Previous"
         new_question(@label, @trivia.previous["question"], :right)
       end

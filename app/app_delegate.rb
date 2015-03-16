@@ -16,10 +16,9 @@ class AppDelegate < PM::Delegate
   end
 
 
-  # Check for the data each time the app is launched
-  def applicationDidBecomeActive(application)
-      # Check for new data is necessary
-      MotionConcierge.fetch
+  # Check for the data each time the app is launched or returns active
+  def on_activate
+    MotionConcierge.fetch
   end
 
 end

@@ -5,13 +5,13 @@ class HelpScreenStylesheet < ApplicationStylesheet
   end
 
   def root_view(st)
-    screen_style(st)
+    st.background_image = image.resource('retina_wood')
   end
 
   def help_image (st, image_name)
     st.image = image.resource(image_name)
     # Adjust top depending on orientation
-    from_top = (rmq.device.orientation == :portrait) ? 100 : 50;
+    from_top = (device.orientation == :portrait) ? 100 : 50;
     st.frame = {w: screen_width, h: screen_height/5, t: from_top, l: 0, padding: 10}
     st.content_mode = UIViewContentModeScaleAspectFit
 

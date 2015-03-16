@@ -5,7 +5,7 @@ class AboutScreenStylesheet < ApplicationStylesheet
   end
 
   def root_view(st)
-    screen_style(st)
+    st.background_image = image.resource('retina_wood')
   end
 
 end

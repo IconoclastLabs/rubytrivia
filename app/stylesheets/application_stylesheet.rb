@@ -12,15 +12,4 @@ class ApplicationStylesheet < RubyMotionQuery::Stylesheet
     color.add_named :battleship_gray,   '#7F7F7F'
   end
 
-  def screen_style st
-    background_image = image.resource('retina_wood')
-
-    if st.view.is_a?(UITableView)
-      st.background_color = color.clear
-      st.view.backgroundView = UIImageView.alloc.initWithImage(background_image)
-    else
-      st.view.backgroundColor = UIColor.colorWithPatternImage(background_image)
-    end
-  end
-
 end
