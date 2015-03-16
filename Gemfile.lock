@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/GantMan/motion-concierge.git
-  revision: 4c6f28d1de5e58b65a43c881ae80c79824ab4a65
+  revision: 72788530156c3fe09ff022ac6efa4fcb9ca8f939
   specs:
     motion-concierge (0.0.1)
       afmotion

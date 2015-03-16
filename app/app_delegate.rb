@@ -5,7 +5,7 @@ class AppDelegate < PM::Delegate
     Appirater.setAppId 703147133
 
     # Set up motion-concierge
-    MotionConcierge.local_file_name = 'qa.json'
+    MotionConcierge.local_file_name = 'qa_downloaded.json'
     MotionConcierge.remote_file_url = 'https://raw.github.com/IconoclastLabs/rubytrivia/master/resources/qa.json'
     MotionConcierge.fetch_interval = 86400 # Once a day
 

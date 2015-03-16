@@ -10,10 +10,6 @@ describe "Trivia" do
       should.raise(NoMethodError)
   end
 
-  it "stores everythinin App::Persistence['trivia']" do
-    App::Persistence['trivia'].should == @trivia.instance_variable_get("@quips")
-  end
-
   it "changes and returns current_quip on next" do
     old = @trivia.current_quip
     quip = @trivia.next

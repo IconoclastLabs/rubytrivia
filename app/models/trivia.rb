@@ -21,7 +21,13 @@ class Trivia
   end
 
   def seed_quips
-    BW::JSON.parse(MotionConcierge.local_file_string)
+    json_string = ""
+    unless json_string = MotionConcierge.local_file_string
+      mp "My data came from the local copy"
+      seed_file = NSBundle.mainBundle.pathForResource('qa', ofType:'json')
+      json_string = String.new(NSString.stringWithContentsOfFile(seed_file))
+    end
+    BW::JSON.parse(json_string)
   end
 
   def load_lines
